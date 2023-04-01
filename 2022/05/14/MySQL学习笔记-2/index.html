@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css/css?family=LXGW+WenKai:300,300italic,400,400italic,700,700italic%7CMonaco:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="子查询子查询是嵌套一个语句中的查询语句，也被称为内部查询。子查询经常用在 WHERE 子句中 1234567SELECT *FROM languageWHERE EXISTS(    SELECT *    FROM film    WHERE film.language_id &#x3D; language.language_id  ); 其中括号内的内容就是子查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL学习笔记-2">
+<meta property="og:url" content="http://example.com/2022/05/14/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/index.html">
+<meta property="og:site_name" content="花祭的博客">
+<meta property="og:description" content="子查询子查询是嵌套一个语句中的查询语句，也被称为内部查询。子查询经常用在 WHERE 子句中 1234567SELECT *FROM languageWHERE EXISTS(    SELECT *    FROM film    WHERE film.language_id &#x3D; language.language_id  ); 其中括号内的内容就是子查询">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-14T12:34:29.000Z">
+<meta property="article:modified_time" content="2023-04-01T13:53:34.760Z">
+<meta property="article:author" content="花祭">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/05/14/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/05/14/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/","path":"2022/05/14/MySQL学习笔记-2/","title":"MySQL学习笔记-2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL学习笔记-2 | 花祭的博客</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">花祭的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.</span> <span class="nav-text">子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#INSERT"><span class="nav-number">2.</span> <span class="nav-text">INSERT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#INSERT-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">INSERT 修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INSERT-%E9%99%90%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">INSERT 限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DELETE"><span class="nav-number">3.</span> <span class="nav-text">DELETE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%90%E5%88%B6%E5%88%A0%E9%99%A4%E7%9A%84%E6%9C%80%E5%A4%A7%E8%A1%8C%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">限制删除的最大行数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8%E4%B8%AD%E6%89%80%E6%9C%89%E7%9A%84%E8%A1%8C"><span class="nav-number">3.2.</span> <span class="nav-text">删除表中所有的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">3.3.</span> <span class="nav-text">DELETE 修饰符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UPDATE"><span class="nav-number">4.</span> <span class="nav-text">UPDATE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%9B%B4%E6%96%B0"><span class="nav-number">4.1.</span> <span class="nav-text">使用表达式更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%90%E6%9F%A5%E8%AF%A2%E6%9B%B4%E6%96%B0"><span class="nav-number">4.2.</span> <span class="nav-text">使用子查询更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">4.3.</span> <span class="nav-text">UPDATE 修饰符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REPLACE"><span class="nav-number">5.</span> <span class="nav-text">REPLACE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CREATE-DATABASE"><span class="nav-number">6.</span> <span class="nav-text">CREATE DATABASE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E5%90%8D%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-number">6.1.</span> <span class="nav-text">MySQL 数据库命名的要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DROP-DATABASE"><span class="nav-number">7.</span> <span class="nav-text">DROP DATABASE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CREATE-TABLE"><span class="nav-number">8.</span> <span class="nav-text">CREATE TABLE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CREATE-TABLE-%E2%80%A6-LIKE"><span class="nav-number">8.1.</span> <span class="nav-text">CREATE TABLE … LIKE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CREATE-TABLE-%E2%80%A6-SELECT"><span class="nav-number">8.2.</span> <span class="nav-text">CREATE TABLE … SELECT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DROP-TABLE"><span class="nav-number">9.</span> <span class="nav-text">DROP TABLE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALTER-TABLE"><span class="nav-number">10.</span> <span class="nav-text">ALTER TABLE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TRUNCATE-TABLE"><span class="nav-number">11.</span> <span class="nav-text">TRUNCATE TABLE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%88%AB%E4%BA%8E-DELETE"><span class="nav-number">11.1.</span> <span class="nav-text">区别于 DELETE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PRIMARY-KEY"><span class="nav-number">12.</span> <span class="nav-text">PRIMARY KEY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%94%AE"><span class="nav-number">12.1.</span> <span class="nav-text">定义主键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FOREIGN-KEY"><span class="nav-number">13.</span> <span class="nav-text">FOREIGN KEY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%94%AE%E8%AF%AD%E6%B3%95"><span class="nav-number">13.1.</span> <span class="nav-text">外键语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%A4%96%E9%94%AE"><span class="nav-number">13.2.</span> <span class="nav-text">添加外键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%A4%96%E9%94%AE"><span class="nav-number">13.3.</span> <span class="nav-text">删除外键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CASCADE-%E7%AD%96%E7%95%A5"><span class="nav-number">13.4.</span> <span class="nav-text">CASCADE 策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTRICT-%E7%AD%96%E7%95%A5"><span class="nav-number">13.5.</span> <span class="nav-text">RESTRICT 策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SET-NULL-%E7%AD%96%E7%95%A5"><span class="nav-number">13.6.</span> <span class="nav-text">SET NULL 策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%BC%95%E7%94%A8%E5%A4%96%E9%94%AE"><span class="nav-number">13.7.</span> <span class="nav-text">自引用外键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E6%88%96%E7%A6%81%E7%94%A8%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="nav-number">13.8.</span> <span class="nav-text">启用或禁用外键约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUTO-INCREMENT"><span class="nav-number">14.</span> <span class="nav-text">AUTO_INCREMENT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E8%87%AA%E5%A2%9E%E5%88%97%E7%9A%84%E5%80%BC"><span class="nav-number">14.1.</span> <span class="nav-text">如何查看自增列的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E8%87%AA%E5%A2%9E%E5%88%97%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="nav-number">14.2.</span> <span class="nav-text">自定自增列初始值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%9A%84%E8%87%AA%E5%A2%9E%E5%80%BC"><span class="nav-number">14.3.</span> <span class="nav-text">修改表的自增值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GENERATED-COLUMN"><span class="nav-number">15.</span> <span class="nav-text">GENERATED COLUMN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNIQUE-KEY"><span class="nav-number">16.</span> <span class="nav-text">UNIQUE KEY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%94%AF%E4%B8%80%E9%94%AE%E4%B8%8E-NULL"><span class="nav-number">16.1.</span> <span class="nav-text">唯一键与 NULL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NOT-NULL"><span class="nav-number">17.</span> <span class="nav-text">NOT NULL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">18.</span> <span class="nav-text">MySQL 数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.</span> <span class="nav-text">字符串类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.1.</span> <span class="nav-text">数字类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.2.</span> <span class="nav-text">日期和时间类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.3.</span> <span class="nav-text">二进制数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.4.</span> <span class="nav-text">空间数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.5.</span> <span class="nav-text">JSON 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">19.6.</span> <span class="nav-text">布尔数据类型</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="花祭"
+      src="/images/my_avatar.JPG">
+  <p class="site-author-name" itemprop="name">花祭</p>
+  <div class="site-description" itemprop="description">一个简单的小博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuaJiYa520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuaJiYa520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Hua.JiYa@outlook.com" title="E-Mail → mailto:Hua.JiYa@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/HuaJiYa520" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/14/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_avatar.JPG">
+      <meta itemprop="name" content="花祭">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花祭的博客">
+      <meta itemprop="description" content="一个简单的小博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL学习笔记-2 | 花祭的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL学习笔记-2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-14 20:34:29" itemprop="dateCreated datePublished" datetime="2022-05-14T20:34:29+08:00">2022-05-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-01 21:53:34" itemprop="dateModified" datetime="2023-04-01T21:53:34+08:00">2023-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>子查询是嵌套一个语句中的查询语句，也被称为内部查询。子查询经常用在 <code>WHERE</code> 子句中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">language</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">FROM</span> film</span><br><span class="line">    <span class="keyword">WHERE</span> film.language_id <span class="operator">=</span> language.language_id</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>其中括号内的内容就是子查询</p>
+<span id="more"></span>
+<h2 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h2><p><code>INSERT</code> 语句用于将一行或者多行数据插入到数据表中</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 插入单行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column_1, column_2, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (value_1, value_2, ...);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入多行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column_1, column_2, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (value_11, value_12, ...),</span><br><span class="line">       (value_21, value_22, ...)</span><br><span class="line">       ...;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>INSERT INTO</code> 和 <code>VALUES</code> 都是关键字</li>
+<li><code>INSERT INTO</code> 后跟表名 table_name</li>
+<li>表名 table_name 后跟要插入数据的列名列表。列名放在小括号中，多个列表使用逗号分隔</li>
+<li><code>VALUES</code> 关键字之后的小括号中是值列表。值的数量要和字段的数量相同。值的位置和列的位置一一对应</li>
+<li>当插入多行数据时，多个值列表之间使用逗号分隔</li>
+<li><code>INSERT</code> 语句返回插入的行数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 首先创建一个 user 表 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span> (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    birthday <span class="type">DATE</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入单行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> (name, age)</span><br><span class="line"><span class="keyword">VALUES</span> (&quot;Jim&quot;, <span class="number">18</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 查看刚刚插入的数据 */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> <span class="keyword">user</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span> age  <span class="operator">|</span> birthday <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim  <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span> <span class="keyword">NULL</span>     <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入多行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> (name, age)</span><br><span class="line"><span class="keyword">VALUES</span> (&quot;Tim&quot;, <span class="number">19</span>), (&quot;Lucy&quot;, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 查看数据 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span> age  <span class="operator">|</span> birthday <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim  <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span> <span class="keyword">NULL</span>     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> Tim  <span class="operator">|</span>   <span class="number">19</span> <span class="operator">|</span> <span class="keyword">NULL</span>     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> Lucy <span class="operator">|</span>   <span class="number">16</span> <span class="operator">|</span> <span class="keyword">NULL</span>     <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+----------+</span></span><br><span class="line"><span class="number">3</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="INSERT-修饰符"><a href="#INSERT-修饰符" class="headerlink" title="INSERT 修饰符"></a>INSERT 修饰符</h3><ul>
+<li><p><code>LOW_PRIORITY</code> 如果你指定了 <code>LOW_PRIORITY</code> 修饰符，MySQL 服务器将延迟执行 <code>INSERT</code> 操作直到没有客户端对表进行读操作<br>  <code>LOW_PRIORITY</code> 修饰符影响那些只支持表级锁的存储引擎，比如： MyISAM, MEMORY, 和 MERGE</p>
+</li>
+<li><p><code>HIGH_PRIORITY</code> 如果你指定了 <code>HIGH_PRIORITY</code> 修饰符，它会覆盖掉服务器启动时的 <code>--low-priority-updates</code> 选项<br>  <code>HIGH_PRIORITY</code> 修饰符影响那些只支持表级锁的存储引擎，比如： MyISAM, MEMORY, 和 MERGE</p>
+</li>
+<li><p><code>IGNORE</code> 如果你指定了 <code>IGNORE</code> 修饰符，MySQL 服务器会在执行 <code>INSERT</code> 操作期间忽略那些可忽略的错误。这些错误最终会作为 <code>WARNING</code> 返回</p>
+</li>
+</ul>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> [LOW_PRIORITY <span class="operator">|</span> DELAYED <span class="operator">|</span> HIGH_PRIORITY] [IGNORE]</span><br><span class="line"><span class="keyword">INTO</span> table_name</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="INSERT-限制"><a href="#INSERT-限制" class="headerlink" title="INSERT 限制"></a>INSERT 限制</h3><p>在 MySQL 中，<code>max_allowed_packet</code> 配置了服务器和客户端任何单个消息大小的上限。这同样适用于 <code>SELECT</code> 语句。当一个 <code>SELECT</code> 语句的大小超过 <code>max_allowed_packet</code> 值时，服务器就会给出一个错误</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> VARIABLES <span class="keyword">LIKE</span> <span class="string">&#x27;max_allowed_packet&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+----------+</span></span><br><span class="line"><span class="operator">|</span> Variable_name      <span class="operator">|</span> <span class="keyword">Value</span>    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+----------+</span></span><br><span class="line"><span class="operator">|</span> max_allowed_packet <span class="operator">|</span> <span class="number">67108864</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+----------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h2 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h2><p><code>DELETE</code> 语句用于从表中删除满足条件的记录行</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name</span><br><span class="line">[<span class="keyword">WHERE</span> clause]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> ...]</span><br><span class="line">[LIMIT row_count]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>DELETE FROM</code> 后跟的是要从中删除数据的表</li>
+<li><code>WHERE</code> 子句用来过滤需要删除的行。满足条件的行会被删除</li>
+<li><code>WHERE</code> 子句是可选的。没有 <code>WHERE</code> 子句时，<code>DELETE</code> 语句将删除表中的所有行</li>
+<li><code>ORDER BY</code> 子句用来指定删除行的顺序。它是可选的</li>
+<li><code>LIMIT</code> 子句用来指定删除的最大行数。它是可选的</li>
+<li><code>DELETE</code> 语句返回删除的行数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除 actor_id 等于 1 的行 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> actor <span class="keyword">WHERE</span> actor_id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除 last_name 等于 KILMER 的行 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> actor <span class="keyword">WHERE</span> last_name <span class="operator">=</span> <span class="string">&#x27;KILMER&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">5</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="限制删除的最大行数"><a href="#限制删除的最大行数" class="headerlink" title="限制删除的最大行数"></a>限制删除的最大行数</h3><p>可以结合使用 <code>ORDER BY</code> 和 <code>LIMIT</code> 子句来限制删除的最大行数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除 actor 中 actor_id 最大的 10 行 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> actor</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> actor_id <span class="keyword">DESC</span></span><br><span class="line">LIMIT <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">10</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="删除表中所有的行"><a href="#删除表中所有的行" class="headerlink" title="删除表中所有的行"></a>删除表中所有的行</h3><p>如果不使用 <code>WHERE</code> 或 <code>LIMIT</code> 子句，则会删除表中的所有行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> actor;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">185</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>如果只是想清空表，可以使用 <code>TRUNCATE TABLE</code> 语句以获得更好的性能</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> actor;</span><br></pre></td></tr></table></figure>
+<h3 id="DELETE-修饰符"><a href="#DELETE-修饰符" class="headerlink" title="DELETE 修饰符"></a>DELETE 修饰符</h3><p><code>DELETE</code> 支持 3 个修饰符</p>
+<ul>
+<li><p><code>LOW_PRIORITY</code> 如果你指定了 <code>LOW_PRIORITY</code> 修饰符，MySQL 服务器将延迟执行 <code>DELETE</code> 操作直到没有客户端对表进行读操作。这个修饰符影响那些只支持表级锁的存储引擎，比如： MyISAM, MEMORY, 和 MERGE</p>
+</li>
+<li><p><code>QUICK</code> 如果你指定了 <code>QUICK</code> 修饰符，MyISAM 存储引擎不会在 <code>DELETE</code> 操作期间合并索引。这在某种程度上会加快 <code>DELETE</code> 操作</p>
+</li>
+<li><p><code>IGNORE</code> 如果你指定了 <code>IGNORE</code> 修饰符，MySQL 服务器会在执行 <code>DELETE</code> 操作期间忽略那些可忽略的错误。这些错误最终会作为 <code>WARNING</code> 返回</p>
+</li>
+</ul>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> [LOW_PRIORITY] [QUICK] [IGNORE] <span class="keyword">FROM</span> table_name</span><br></pre></td></tr></table></figure>
+<h2 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h2><p><code>UPDATE</code> 语句可以更新表中的一行或者多行数据，可以更新表中的一个或者多个字段（列）</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> [IGNORE] table_name</span><br><span class="line"><span class="keyword">SET</span></span><br><span class="line">    column_name1 <span class="operator">=</span> value1,</span><br><span class="line">    column_name2 <span class="operator">=</span> value2,</span><br><span class="line">    ...</span><br><span class="line">[<span class="keyword">WHERE</span> clause];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>UPDATE</code> 关键字后指定要更新数据的表名</li>
+<li>使用 <code>SET</code> 子句设置字段的新值。多个字段使用逗号分隔。字段的值可以是普通的字面值，也可以是表达式运算，还可以是子查询</li>
+<li>使用 <code>WHERE</code> 子句指定要更新的行。只有符合 <code>WHERE</code> 条件的行才会被更新</li>
+<li><code>WHERE</code> 子句是可选的。如果不指定 <code>WHERE</code> 子句，则更新表中的所有行</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 更新 customer 表中 customer_id 为 1 的客户的电子邮件 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> customer</span><br><span class="line"><span class="keyword">SET</span> email <span class="operator">=</span> <span class="string">&#x27;NEW.MARY.SMITH@sakilacustomer.org&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> customer_id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">1</span>  Changed: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 更新多行的值 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> customer</span><br><span class="line"><span class="keyword">SET</span> first_name <span class="operator">=</span> <span class="string">&#x27;Tim&#x27;</span>,</span><br><span class="line">    last_name <span class="operator">=</span> <span class="string">&#x27;Duncan&#x27;</span>,</span><br><span class="line">    email <span class="operator">=</span> <span class="string">&#x27;Tim.Duncan@sakilacustomer.org&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> customer_id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="使用表达式更新"><a href="#使用表达式更新" class="headerlink" title="使用表达式更新"></a>使用表达式更新</h3><p>使用 <code>UPDATE</code> 更新时，字段的值可以设置为表达式的运算结果，比如函数或其他的运算</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 注意，下述语句中没有使用 WHERE 子句，所以表中所有的数据都进行了更新 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> customer</span><br><span class="line"><span class="keyword">SET</span> email <span class="operator">=</span> REPLACE(email, <span class="string">&#x27;sakilacustomer.org&#x27;</span>, <span class="string">&#x27;sjkjc.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="使用子查询更新"><a href="#使用子查询更新" class="headerlink" title="使用子查询更新"></a>使用子查询更新</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 使用 SELECT 语句返回一个随机的商店 id 并绑定给没有商店的客户 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> customer</span><br><span class="line"><span class="keyword">SET</span> store_id <span class="operator">=</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> store_id</span><br><span class="line">    <span class="keyword">FROM</span> store</span><br><span class="line">    <span class="keyword">ORDER</span> <span class="keyword">BY</span> RAND()</span><br><span class="line">    LIMIT <span class="number">1</span></span><br><span class="line">  )</span><br><span class="line"><span class="keyword">WHERE</span> store_id <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="UPDATE-修饰符"><a href="#UPDATE-修饰符" class="headerlink" title="UPDATE 修饰符"></a>UPDATE 修饰符</h3><ul>
+<li><p><code>LOW_PRIORITY</code> 如果你指定了 <code>LOW_PRIORITY</code> 修饰符，MySQL 服务器将延迟执行 <code>UPDATE</code> 操作直到没有客户端对表进行读操作<br>  <code>LOW_PRIORITY</code> 修饰符影响那些只支持表级锁的存储引擎，比如： MyISAM, MEMORY, 和 MERGE</p>
+</li>
+<li><p><code>IGNORE</code> 如果你指定了 <code>IGNORE</code> 修饰符，MySQL 服务器会在执行 <code>UPDATE</code> 操作期间忽略那些可忽略的错误。这些错误最终会作为 <code>WARNING</code> 返回</p>
+</li>
+</ul>
+<h2 id="REPLACE"><a href="#REPLACE" class="headerlink" title="REPLACE"></a>REPLACE</h2><p>如果想向表中插入数据，除了使用 <code>INSERT</code> 语句，还可以使用 <code>REPLACE</code> 语句。<code>REPLACE</code> 语句和 <code>INSERT</code> 语句很像，它们的不同之处在于，当插入过程中出现了重复的主键或者重复的唯一索引的时候，<code>INSERT</code> 语句会产生一个错误，而 <code>REPLACE</code> 语句则先删除旧的行，再插入新的行</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPLACE [<span class="keyword">INTO</span>] table_name (column_1, column_2, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (value_11, value_12, ...),</span><br><span class="line">       (value_21, value_22, ...)</span><br><span class="line">       ...;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>REPLACE INTO</code> 和 <code>VALUES</code> 都是关键字。<code>INTO</code> 可省略</li>
+<li><code>REPLACE INTO</code> 后跟表名 table_name</li>
+<li>表名 table_name 后跟要插入数据的列名列表。列名放在小括号中，多个列表使用逗号分隔</li>
+<li><code>VALUES</code> 关键字之后的小括号中是值列表。值的数量要和字段的数量相同。值的位置和列的位置一一对应</li>
+<li>当插入多行数据时，多个值列表之间使用逗号分隔</li>
+</ul>
+<p><code>REPLACE</code> 语句还可以使用 <code>SET</code> 关键词，这只适用于操作单行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPLACE [<span class="keyword">INTO</span>] table_name</span><br><span class="line"><span class="keyword">SET</span> column1 <span class="operator">=</span> value1,</span><br><span class="line">    column2 <span class="operator">=</span> value2,</span><br><span class="line">    ...;</span><br></pre></td></tr></table></figure>
+<p>这种用法与 <code>UPDATE</code> 语句的相似，但也是不同的。 <code>UPDATE</code> 只更新符合条件的行的指定字段的值，未指定的字段保留原值。<code>REPLACE</code> 则会删掉旧行，再插入新行，<code>REPLACE</code> 语句中未指定的字段则为默认值或者 <code>NULL</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 假设有如下表 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span> age  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim  <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入 2 个新行 */</span></span><br><span class="line">REPLACE <span class="keyword">INTO</span> <span class="keyword">user</span> (id, name, age)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, &quot;Tim&quot;, <span class="number">19</span>), (<span class="number">3</span>, &quot;Lucy&quot;, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line">Records: <span class="number">2</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line"><span class="comment">/* 2 row affected 表示已经成功插入 2 行 */</span></span><br><span class="line"></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span> age  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim  <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> Tim  <span class="operator">|</span>   <span class="number">19</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> Lucy <span class="operator">|</span>   <span class="number">16</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入一个具有重复主键的行，此时表中已有 id 为 3 的行，因此会先删除旧的数据，再插入新的数据 */</span></span><br><span class="line">REPLACE <span class="keyword">INTO</span> <span class="keyword">user</span> (id, name, age)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">3</span>, &quot;Alice&quot;, <span class="number">18</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name  <span class="operator">|</span> age  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim   <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> Tim   <span class="operator">|</span>   <span class="number">19</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> Alice <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入并替换 */</span></span><br><span class="line">REPLACE <span class="keyword">INTO</span> <span class="keyword">user</span> (id, name, age)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, &quot;James&quot;, <span class="number">20</span>), (<span class="number">4</span>, &quot;Kobe&quot;, <span class="number">16</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line">Records: <span class="number">2</span>  Duplicates: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3 rows affected 表示删除了一行，又插入了两行。</span></span><br><span class="line"><span class="comment">Records: 2 表示语句中有两行。</span></span><br><span class="line"><span class="comment">Duplicates: 1 表示重复了一行。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name  <span class="operator">|</span> age  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> Jim   <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> James <span class="operator">|</span>   <span class="number">20</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> Alice <span class="operator">|</span>   <span class="number">18</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">4</span> <span class="operator">|</span> Kobe  <span class="operator">|</span>   <span class="number">16</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------+------+</span></span><br></pre></td></tr></table></figure>
+<h2 id="CREATE-DATABASE"><a href="#CREATE-DATABASE" class="headerlink" title="CREATE DATABASE"></a>CREATE DATABASE</h2><p><code>CREATE DATABASE</code> 语句用来创建数据库</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> &#123;DATABASE <span class="operator">|</span> SCHEMA&#125; [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] database_name</span><br><span class="line">[<span class="type">CHARACTER</span> <span class="keyword">SET</span> charset_name]</span><br><span class="line">[<span class="keyword">COLLATE</span> collation_name]</span><br><span class="line">[ENCRYPTION &#123;<span class="string">&#x27;Y&#x27;</span> <span class="operator">|</span> <span class="string">&#x27;N&#x27;</span>&#125;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>CREATE DATABASE</code> 和 <code>CREATE SCHEMA</code> 的是一样的</li>
+<li><code>CREATE DATABASE</code> 后指定要创建的数据库的名字</li>
+<li><code>IF NOT EXISTS</code> 表示在指定的数据库不存在的情况下才创建。它是可选的</li>
+<li><code>CHARACTER SET charset_name</code> 指定数据库的字符集。它是可选的。默认使用数据库服务器的配置</li>
+<li><code>COLLATE collation_name</code> 指定数据库的排序规则。它是可选的。默认使用数据库服务器的配置</li>
+<li><code>ENCRYPTION</code> 指定数据库的是否加密。它是可选的。默认使用数据库服务器的配置</li>
+</ul>
+<h3 id="MySQL-数据库命名的要求"><a href="#MySQL-数据库命名的要求" class="headerlink" title="MySQL 数据库命名的要求"></a>MySQL 数据库命名的要求</h3><ul>
+<li>数据库的名字最长为 64 个字符。名字的长度还取决于操作系统</li>
+<li>数据库名可以由字母、数字、下划线、美元符号组成</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建一个数据库 */</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE newdb;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.02</span> sec)</span><br><span class="line"><span class="comment">/* 1 row affected 表示已经成功创建了数据库 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 使用新创建的数据库 */</span></span><br><span class="line">USE testdb;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 查看创建数据库的信息 */</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE newdb;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Database <span class="operator">|</span> <span class="keyword">Create</span> Database                                                                                                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> newdb    <span class="operator">|</span> <span class="keyword">CREATE</span> DATABASE `newdb` <span class="comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */</span> <span class="comment">/*!80016 DEFAULT ENCRYPTION=&#x27;N&#x27; */</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h2 id="DROP-DATABASE"><a href="#DROP-DATABASE" class="headerlink" title="DROP DATABASE"></a>DROP DATABASE</h2><p><code>DROP DATABASE</code> 语句将永久删除数据库和数据库中的所有表</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> &#123;DATABASE <span class="operator">|</span> SCHEMA&#125; [IF <span class="keyword">EXISTS</span>] database_name;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>DROP DATABASE</code> 和 <code>DROP SCHEMA</code> 是一样的</li>
+<li><code>DROP DATABASE</code> 关键字后指定要删除的数据库的名称</li>
+<li><code>IF EXISTS</code> 选项可以避免删除不存在数据库时发生的错误。它是可选的</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除数据库 */</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE newdb;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h2 id="CREATE-TABLE"><a href="#CREATE-TABLE" class="headerlink" title="CREATE TABLE"></a>CREATE TABLE</h2><p><code>CREATE TABLE</code> 语句用于创建表</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] table_name (</span><br><span class="line">   column_name data_type [<span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>] [<span class="keyword">DEFAULT</span> expr],</span><br><span class="line">   column_name data_type [<span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>] [<span class="keyword">DEFAULT</span> expr],</span><br><span class="line">   ...,</span><br><span class="line">   [table_constraints]</span><br><span class="line">) [ENGINE<span class="operator">=</span>storage_engine];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>CREATE TABLE</code> 语句创建一个给定名字 table_name 的表<ul>
+<li>表名可由字母、数字、下划线和美元符号组成，列名长度在 64 个字符以内</li>
+<li>表名在一个数据库中是唯一的</li>
+<li>新建的表会在当前默认的数据库中。如果还没有选择数据库，请使用 <code>db_name.table_name</code> 格式指定要新建的表所在的数据库</li>
+</ul>
+</li>
+<li><code>IF NOT EXISTS</code> 指示只有给定的表不存在的时候才进行创建。它是可选的<br>  如果你给定一个已经存在的表名，又没有使用 <code>IF NOT EXISTS</code> 子句，服务器会返回一个错误</li>
+<li><code>column_name data_type [NOT NULL | NULL] [DEFAULT expr] [AUTO_INCREMENT]</code> 定义了表中的一列。多个列使用逗号分隔<ul>
+<li><code>column_name</code> 是列的名字。列名可由字母、数字、下划线和美元符号组成，列名长度在 64 个字符以内。列名在一个表中是唯一的</li>
+<li><code>data_type</code> 是数据类型，可以是 <code>CHAR</code>, <code>VARCHAR</code>, <code>INT</code>, <code>DATE</code>, <code>DATETIME</code>, <code>BIT</code>, <code>TEXT</code>, <code>ENUM</code>, <code>JSON</code>, <code>BOLB</code> 等</li>
+<li><code>[NOT NULL | NULL]</code> 指示该列是否可以为 <code>NULL</code>。它是可选的。如果不指定该选项，则此列可以为 <code>NULL</code>。如果设置为 <code>NOT NULL</code>，则插入新行时该列必须有值</li>
+<li><code>[DEFAULT expr]</code> 指示该列的默认值。它是可选的。如果不指定该选项，则此列的默认是 <code>NULL</code></li>
+<li><code>[AUTO_INCREMENT]</code> 指示该列是否是一个自增列。如果使用了此选项，则该列的值可有服务器自动产生和填充。该列的值从 1 开始，每增加一个行就会加 1。一个表中只能有一个自增列</li>
+<li><code>[table_constraints]</code> 位于列定义之后，它定义了表的约束。它是可选的。表的约束有主键、外键、CHECK、UNIQUE 等</li>
+</ul>
+</li>
+<li><code>ENGINE=storage_engine</code> 子句指定了表使用的存储引擎。它是可选的</li>
+<li>如果不指定此选项，则采用服务器默认的存储引擎。自 MySQL 5.5 版以来，服务器默认的引擎是由 MyISAM 变成了 InnoDB</li>
+<li>当表名或者字段名中含有空格或者其他特殊字字符时，请使用 <code>` </code> 包围起来。比如： <code>test 1</code></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建 user 表 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">  `user_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `age` <span class="type">INT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `locked` TINYINT <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">  `created_at` DATETIME <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`user_id`));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建 user_hobby 表 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `testdb`.`user_hobby` (</span><br><span class="line">  `hobby_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `user_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `hobby` <span class="type">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `created_at` DATETIME <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  INDEX `fk_user_idx` (`user_id` <span class="keyword">ASC</span>) VISIBLE,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`hobby_id`),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> `fk_user`</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (`user_id`)</span><br><span class="line">    <span class="keyword">REFERENCES</span> `testdb`.`<span class="keyword">user</span>` (`user_id`)</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">UPDATE</span> RESTRICT);</span><br></pre></td></tr></table></figure>
+<h3 id="CREATE-TABLE-…-LIKE"><a href="#CREATE-TABLE-…-LIKE" class="headerlink" title="CREATE TABLE … LIKE"></a>CREATE TABLE … LIKE</h3><p><code>CREATE TABLE ... LIKE</code> 语句可以用来克隆另一个表的定义。它以另一个表的定义为基础创建一个新的空表，包含了原表中定义的列属性和索引</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> new_table <span class="keyword">LIKE</span> original_table;</span><br></pre></td></tr></table></figure>
+<h3 id="CREATE-TABLE-…-SELECT"><a href="#CREATE-TABLE-…-SELECT" class="headerlink" title="CREATE TABLE … SELECT"></a>CREATE TABLE … SELECT</h3><p>可以使用 <code>CREATE TABLE ... SELECT</code> 语句从另一个表创建一个新表。该语句会依据 <code>SELECT</code> 子句中的列创建新表，并将 <code>SELECT</code> 的结果集插入到新表中</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> new_table [<span class="keyword">AS</span>] <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> original_table;</span><br></pre></td></tr></table></figure>
+<h2 id="DROP-TABLE"><a href="#DROP-TABLE" class="headerlink" title="DROP TABLE"></a>DROP TABLE</h2><p><code>DROP TABLE</code> 用于永久删除数据表和表中的数据</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [IF <span class="keyword">EXISTS</span>]</span><br><span class="line">  table_name [, table_name] ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>DROP TABLE</code> 关键字后面是要删除的表名。如果要删除多个表，请使用逗号分隔表名</li>
+<li><code>IF EXISTS</code> 选项避免了删除不存在的表时发生的错误。它是可选的<ul>
+<li>当要删除的表中有不存在的表时：<ul>
+<li>有 <code>IF EXISTS</code> 选项，不会对不存在的表报错。该语句会删除存在的表，并给出不存在的表的提示</li>
+<li>没有 <code>IF EXISTS</code> 选项，该语句运行失败带有一个指示不能移除不存在的表的错误。该语句不会删除任何表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>DROP TABLE</code> 删除表的定义和表中的数据，以及表上触发器</li>
+<li>你需要具有要删除的每一个表的 <code>DROP</code> 权限</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 删除一个表 */</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> test1;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除多个表 */</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> test2, test3;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除一个不存在的表 */</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> test5;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">ERROR <span class="number">1051</span> (<span class="number">42</span>S02): <span class="literal">Unknown</span> <span class="keyword">table</span> <span class="string">&#x27;testdb.test5&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 带 IF EXISTS 删除不存在的表 */</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> test5;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 1 warning 表示有一个需要注意的事项，可查看具体信息 */</span></span><br><span class="line"><span class="keyword">SHOW</span> WARNINGS;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+------+------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Level <span class="operator">|</span> Code <span class="operator">|</span> Message                      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+------+------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Note  <span class="operator">|</span> <span class="number">1051</span> <span class="operator">|</span> <span class="literal">Unknown</span> <span class="keyword">table</span> <span class="string">&#x27;testdb.test5&#x27;</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+------+------------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h2 id="ALTER-TABLE"><a href="#ALTER-TABLE" class="headerlink" title="ALTER TABLE"></a>ALTER TABLE</h2><p>通过 <code>ALTER TABLE</code> 语句，可以重命名表、重命名列、添加列、删除列、修改列的属性等</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">  [alter_action options], ...</span><br></pre></td></tr></table></figure>
+<p>其中 <code>alter_action</code> 是一个修改动作，包括：</p>
+<ul>
+<li><p><code>ADD</code> 关键字可用来添加列、索引、约束等，包括：</p>
+<ul>
+<li><code>ADD [COLUMN]</code> 添加列</li>
+<li><code>ADD INDEX</code> 添加索引</li>
+<li><code>ADD PRIMARY KEY</code> 添加主键</li>
+<li><code>ADD FOREIGN KEY</code> 添加外键</li>
+<li><code>ADD UNIQUE INDEX</code> 添加唯一索引</li>
+<li><code>ADD CHECK</code> 添加检查约束</li>
+</ul>
+</li>
+<li><p><code>DROP</code> 关键字可用来删除列、索引、约束等，包括：</p>
+<ul>
+<li><code>DROP [COLUMN] col_name</code> 删除列</li>
+<li><code>DROP INDEX index_name</code> 删除索引</li>
+<li><code>DROP PRIMARY KEY</code> 删除主键</li>
+<li><code>DROP FOREIGN KEY fk_symbol</code> 删除外键</li>
+<li><code>DROP CHECK symbol</code> 删除检查约束</li>
+</ul>
+</li>
+<li><p><code>MODIFY</code> 关键字用来修改列的定义。与 <code>CHANGE</code> 关键字不同，它不能重命名列。例如: <code>MODIFY [COLUMN] col_name column_definition</code></p>
+</li>
+<li><p><code>CHANGE</code> 关键字用来修改列的定义。与 <code>MODIFY</code> 关键字不同，它可以重命名列。例如: <code>CHANGE [COLUMN] old_col_name new_col_name column_definition</code></p>
+</li>
+<li><p><code>RENAME</code> 关键字可以重命名列、索引和表。包括：</p>
+<ul>
+<li><code>RENAME COLUMN old_col_name TO new_col_name</code> 重命名列</li>
+<li><code>RENAME INDEX old_index_name TO new_index_name</code> 重命名索引</li>
+<li><code>RENAME new_tbl_name</code> 重命名表</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 首先创建一个新表 user */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span> (id <span class="type">INT</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 name 列 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">ADD</span> name <span class="type">VARCHAR</span>(<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加多个列 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">ADD</span> age <span class="type">INT</span>,</span><br><span class="line"><span class="keyword">ADD</span> email <span class="type">VARCHAR</span>(<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 重命名列 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line">RENAME <span class="keyword">COLUMN</span> name <span class="keyword">TO</span> username;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改列定义 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line">MODIFY username <span class="type">VARCHAR</span>(<span class="number">45</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改列名和定义 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line">CHANGE username name <span class="type">VARCHAR</span>(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加主键 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY(id);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除列 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> email;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 重命名表 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line">RENAME users;</span><br></pre></td></tr></table></figure>
+<h2 id="TRUNCATE-TABLE"><a href="#TRUNCATE-TABLE" class="headerlink" title="TRUNCATE TABLE"></a>TRUNCATE TABLE</h2><p><code>TRUNCATE TABLE</code> 可以清空一个表中的所有行</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> [<span class="keyword">TABLE</span>] table_name;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>TABLE</code> 关键字是可选的。<code>TRUNCATE TABLE</code> 语句相当于先将此表删掉，再创建一个新表</p>
+<h3 id="区别于-DELETE"><a href="#区别于-DELETE" class="headerlink" title="区别于 DELETE"></a>区别于 DELETE</h3><p>虽然 <code>TRUNCATE</code> 与 <code>DELETE</code> 类似，但是他们在以下几个方面存在不同：</p>
+<ul>
+<li><code>TRUNCATE</code> 被归类为 DDL 语句，而 <code>DELETE</code> 被归类为 DML 语句</li>
+<li><code>TRUNCATE</code> 操作无法被回滚，而 <code>DELETE</code> 可以被回滚</li>
+<li><code>TRUNCATE</code> 操作删除和重建表，它的速度比 <code>DELETE</code> 快得多</li>
+<li><code>TRUNCATE</code> 操作会重置表的自增值，而 <code>DELETE</code> 不会</li>
+<li><code>TRUNCATE</code> 操作不会激活删除触发器，而 <code>DELETE</code> 会</li>
+<li><code>TRUNCATE</code> 操作不返回代表删除行的数量的值，它通常返回 <code>0 rows affected``。DELETE</code> 返回删除的行数</li>
+<li>如果一个表被其他表的外键引用，对此表的 <code>TRUNCATE</code> 操作会失败</li>
+</ul>
+<h2 id="PRIMARY-KEY"><a href="#PRIMARY-KEY" class="headerlink" title="PRIMARY KEY"></a>PRIMARY KEY</h2><p>在关系数据库中，主键是能够唯一标识表中的每一行的一个字段或者多个字段的组合</p>
+<p>在 MySQL 中，主键需要遵循以下规则：</p>
+<ul>
+<li>主键是定义在表上的。一个表不强制定义主键，但最多只能定义一个主键</li>
+<li>主键可以包含一个列或者多个列</li>
+<li>主键列的值必须是唯一的。如果主键包含多个列，则这些列的值组合起来必须是唯一的</li>
+<li>主键列中不能包含 NULL 值</li>
+</ul>
+<p>如果不遵循上面的规则，则可能会引发以下的错误：</p>
+<ul>
+<li>如果定义了多个主键，会返回错误：<code>ERROR 1068 (42000): Multiple primary key defined</code></li>
+<li>如果插入或者更新时有重复的主键值，则会返回类似的错误：<code>ERROR 1062 (23000): Duplicate entry &#39;1&#39; for key &#39;user.PRIMARY&#39;</code></li>
+<li>如果插入了 NULL 值，则会返回类似的错误：<code>ERROR 1048 (23000): Column &#39;id&#39; cannot be null</code></li>
+</ul>
+<h3 id="定义主键"><a href="#定义主键" class="headerlink" title="定义主键"></a>定义主键</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 在创建表时定义主键 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">    id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">45</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 主键包含多个列 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">user</span>(</span><br><span class="line">    com_id <span class="type">INT</span>,</span><br><span class="line">    user_number <span class="type">INT</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">45</span>),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(com_id, user_number)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加主键 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY(id);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除主键 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY;</span><br></pre></td></tr></table></figure>
+<h2 id="FOREIGN-KEY"><a href="#FOREIGN-KEY" class="headerlink" title="FOREIGN KEY"></a>FOREIGN KEY</h2><p>在关系数据库中，外键用来定义两个实体之间的约束关系。外键相对于主键而言，用来引用其他表。外键通过子表的一个或多个列对应到父表的主键或唯一键值，将子表的行和父表行建立起关联关系</p>
+<h3 id="外键语法"><a href="#外键语法" class="headerlink" title="外键语法"></a>外键语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CONSTRAINT</span> `fk_city_country` <span class="keyword">FOREIGN</span> KEY (`country_id`)</span><br><span class="line">    <span class="keyword">REFERENCES</span> `country` (`country_id`)</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> RESTRICT</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE</span><br></pre></td></tr></table></figure>
+<p>这里定义了一个外键：</p>
+<ul>
+<li><p>位于 <code>CONSTRAINT</code> 关键字之后的 <code>fk_city_country</code> 是外键的名字。它是可选的</p>
+</li>
+<li><p>位于 <code>FOREIGN KEY</code> 关键字之后的是作为外键的列名</p>
+</li>
+<li><p>位于 <code>REFERENCES</code> 关键字之后的是被引用的表和列</p>
+</li>
+<li><p><code>ON DELETE</code> 和 <code>ON UPDATE</code> 指定了删除或更新被引用的表中的数据时要采取的约束策略。你可以使用以下 3 个策略中的一个：</p>
+<ul>
+<li><code>CASCADE</code> 如果被引用的表中的一行被删除或更新，该表中匹配行的值会自动删除或更新</li>
+<li><code>SET NULL</code> 如果被引用的表中的一行被删除或更新，该表中匹配行的值设置为 <code>NULL</code></li>
+<li><code>RESTRICT</code> 如果被引用的表中的一行在该表中有匹配的行，试图删除或更新被引用的表中行时会引发 MySQL 错误。这是默认的策略</li>
+</ul>
+</li>
+</ul>
+<p>通常，外键所属的表被称作子表，被外键引用的表被称作父表</p>
+<h3 id="添加外键"><a href="#添加外键" class="headerlink" title="添加外键"></a>添加外键</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> child_table_name</span><br><span class="line"><span class="keyword">ADD</span> [<span class="keyword">CONSTRAINT</span> foreign_key_name]</span><br><span class="line">  <span class="keyword">FOREIGN</span> KEY (<span class="keyword">column</span>))</span><br><span class="line">  <span class="keyword">REFERENCES</span> parent_table_name (<span class="keyword">column</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 方法 1 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_hobby</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY foreign_key_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 方法 2 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> user_hobby</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> constraint_name;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用 <code>ALTER TABLE</code> 语句修改表的定义</li>
+<li><code>DROP FOREIGN KEY</code> 后面指定外键名，也就是约束名</li>
+<li><code>DROP CONSTRAINT</code> 后面指定约束名。它可以通过名字删除任何约束，并不仅仅是外键</li>
+</ul>
+<h3 id="CASCADE-策略"><a href="#CASCADE-策略" class="headerlink" title="CASCADE 策略"></a>CASCADE 策略</h3><p>如果外键的 <code>ON DELETE</code> 和 <code>ON UPDATE</code> 使用了 <code>CASCADE</code> 策略：</p>
+<ul>
+<li>当父表的行被删除的时候，子表中匹配的行也会被删除。</li>
+<li>当父表的行的键值更新的时候，子表中匹配的行的字段也会被更新。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 首先创建 user 表并插入数据 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">  `user_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`user_id`));</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> (user_id, name)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, &quot;Tim&quot;), (<span class="number">2</span>, &quot;Lucy&quot;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建 user_hobby 表，它的外键采用 CASCADE 策略 */</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> user_hobby;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `user_hobby` (</span><br><span class="line">  `hobby_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `user_id` <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `hobby` <span class="type">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`hobby_id`),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> `fk_user`</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (`user_id`)</span><br><span class="line">    <span class="keyword">REFERENCES</span> `<span class="keyword">user</span>` (`user_id`)</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 向两个表中插入数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">user</span> (user_id, name)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, &quot;Tim&quot;);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> user_hobby (hobby_id, user_id, hobby)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;Football&#x27;</span>), (<span class="number">2</span>, <span class="number">1</span>, <span class="string">&#x27;Swimming&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时的 user_hobby */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span> hobby_id <span class="operator">|</span> user_id <span class="operator">|</span> hobby    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span>       <span class="number">1</span> <span class="operator">|</span> Football <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span>       <span class="number">1</span> <span class="operator">|</span> Swimming <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对父表进行 UPDATE 操作 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">SET</span> user_id <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span><span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* user_hobby 表中的数据也被修改 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span> hobby_id <span class="operator">|</span> user_id <span class="operator">|</span> hobby    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span>     <span class="number">100</span> <span class="operator">|</span> Football <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span>     <span class="number">100</span> <span class="operator">|</span> Swimming <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对父表进行 DELETE 操作 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* user_hobby 表中数据也被删除 */</span></span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="RESTRICT-策略"><a href="#RESTRICT-策略" class="headerlink" title="RESTRICT 策略"></a>RESTRICT 策略</h3><p>如果外键的 <code>ON DELETE</code> 和 <code>ON UPDATE</code> 使用了 <code>RESTRICT</code> 策略：</p>
+<ul>
+<li>MySQL 禁止删除父表中与子表匹配的行</li>
+<li>MySQL 禁止删除父表中与子表匹配的行的键的值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 建表过程如上，先对父表进行 UPDATE 操作 */</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">SET</span> user_id <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 服务器返回错误 */</span></span><br><span class="line">ERROR <span class="number">1451</span> (<span class="number">23000</span>): Cannot <span class="keyword">delete</span> <span class="keyword">or</span> <span class="keyword">update</span> a parent <span class="type">row</span>: a <span class="keyword">foreign</span> key <span class="keyword">constraint</span> fails (`testdb`.`user_hobby`, <span class="keyword">CONSTRAINT</span> `fk_user` <span class="keyword">FOREIGN</span> KEY (`user_id`) <span class="keyword">REFERENCES</span> `<span class="keyword">user</span>` (`user_id`) <span class="keyword">ON</span> <span class="keyword">DELETE</span> RESTRICT <span class="keyword">ON</span> <span class="keyword">UPDATE</span> RESTRICT)</span><br><span class="line"></span><br><span class="line"><span class="comment">/* DELETE 操作 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 服务器返回错误 */</span></span><br><span class="line">ERROR <span class="number">1451</span> (<span class="number">23000</span>): Cannot <span class="keyword">delete</span> <span class="keyword">or</span> <span class="keyword">update</span> a parent <span class="type">row</span>: a <span class="keyword">foreign</span> key <span class="keyword">constraint</span> fails (`testdb`.`user_hobby`, <span class="keyword">CONSTRAINT</span> `fk_user` <span class="keyword">FOREIGN</span> KEY (`user_id`) <span class="keyword">REFERENCES</span> `<span class="keyword">user</span>` (`user_id`) <span class="keyword">ON</span> <span class="keyword">DELETE</span> RESTRICT <span class="keyword">ON</span> <span class="keyword">UPDATE</span> RESTRICT)</span><br></pre></td></tr></table></figure>
+<h3 id="SET-NULL-策略"><a href="#SET-NULL-策略" class="headerlink" title="SET NULL 策略"></a>SET NULL 策略</h3><p>如果外键的 <code>ON DELETE</code> 和 <code>ON UPDATE</code> 使用了 <code>SET NULL</code> 策略：</p>
+<ul>
+<li>当父表的行被删除的时候，子表中匹配的行的列的值被设置为 <code>NULL</code></li>
+<li>当父表的行的键值被更新的时候，子表中匹配的行的列的值被设置为 <code>NULL</code></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* UPDATE */</span></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">SET</span> user_id <span class="operator">=</span> <span class="number">100</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 user_hobby 表的数据 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span> hobby_id <span class="operator">|</span> user_id <span class="operator">|</span> hobby    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span>    <span class="keyword">NULL</span> <span class="operator">|</span> Football <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span>    <span class="keyword">NULL</span> <span class="operator">|</span> Swimming <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* DELETE */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* user_hobby */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span> hobby_id <span class="operator">|</span> user_id <span class="operator">|</span> hobby    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span>    <span class="keyword">NULL</span> <span class="operator">|</span> Football <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span>    <span class="keyword">NULL</span> <span class="operator">|</span> Swimming <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+---------+----------+</span></span><br></pre></td></tr></table></figure>
+<h3 id="自引用外键"><a href="#自引用外键" class="headerlink" title="自引用外键"></a>自引用外键</h3><p>有时，子表和父表可能是同一个表。这种表中的外键被称为自引用外键。通常，自引用外键定义在表示树形数据结构的表中。比如一个代表分类的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category (</span><br><span class="line">  category_id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  category_name <span class="type">VARCHAR</span>(<span class="number">45</span>),</span><br><span class="line">  parent_category_id <span class="type">INT</span>,</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> fk_category <span class="keyword">FOREIGN</span> KEY (parent_category_id)</span><br><span class="line">    <span class="keyword">REFERENCES</span> category (category_id)</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> RESTRICT</span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在这个表中，parent_category_id 列是一个外键。它引用了 category 表的 category_id 列</p>
+<h3 id="启用或禁用外键约束"><a href="#启用或禁用外键约束" class="headerlink" title="启用或禁用外键约束"></a>启用或禁用外键约束</h3><p>要禁用外键约束，使用如下语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> foreign_key_checks <span class="operator">=</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>要启用外键约束，使用如下语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> foreign_key_checks <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="AUTO-INCREMENT"><a href="#AUTO-INCREMENT" class="headerlink" title="AUTO_INCREMENT"></a>AUTO_INCREMENT</h2><p>在 MySQL 中，如果需要一个列的值为一个有序的整数序列，可以使用自增列。自增列是 MySQL 中的一个特殊的列，该列的值可由 MySQL 服务器自动生成，并且是一个按升序增长的正整数序列。自增列能够被用来为表的新行产生唯一的标识</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">column_name data_type AUTO_INCREMENT</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>AUTO_INCREMENT</code> 关键字标识该列是一个自增列</li>
+<li>自增列不能使用全部的数据类型，它只适用于整数或者浮点数类型，包括： <code>TINYINT</code>, <code>SMALLINT</code>, <code>INT</code>, <code>MEDIUMINT</code>, <code>BIGINT</code>, <code>DECIMAL</code>, <code>FLOAT</code>, <code>DOUBLE</code></li>
+<li>自增列必须是主键或者唯一键</li>
+<li>自增列默认是 <code>NOT NULL</code> 的</li>
+<li>每个表中只能有一个自增列</li>
+<li>自增列的初始值是 1。每插入一行到表中，该列的值自动增加 1。</li>
+<li>不像生成列，在插入新行时你可以为自增列指定一个值</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 新建一个 user 表，user_id 为自增列 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">&#x27;user&#x27;</span>(</span><br><span class="line">    <span class="string">&#x27;user_id&#x27;</span> <span class="type">INT</span> AUTO_INCREMENT,</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span> <span class="type">VARCHAR</span>(<span class="number">45</span>)</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (<span class="string">&#x27;user_id&#x27;</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入两行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">&#x27;user&#x27;</span> (<span class="string">&#x27;name&#x27;</span>)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;Tim&#x27;</span>),(<span class="string">&#x27;Jim&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 user 表如下 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span> user_id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">1</span> <span class="operator">|</span> Tim  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">2</span> <span class="operator">|</span> Jim  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除 user_id 为 2 的行 */</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> `<span class="keyword">user</span>`</span><br><span class="line"><span class="keyword">WHERE</span> `user_id` <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 再插入一个新行 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">&#x27;user&#x27;</span> (<span class="string">&#x27;name&#x27;</span>) <span class="keyword">VALUES</span> (<span class="string">&#x27;Jim&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 user 表如下 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span> user_id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">1</span> <span class="operator">|</span> Tim  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">3</span> <span class="operator">|</span> Jim  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="comment">/* 新行的 user_id 不是 2 而是 3。这是因为 MySQL 不会重用删除的序列值 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 插入数据时为自增列指定一个值 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `<span class="keyword">user</span>` (`user_id`, `name`)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">20</span>, <span class="string">&#x27;Tom&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 然后再插入一行数据 */</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `<span class="keyword">user</span>` (`name`) <span class="keyword">VALUES</span> (<span class="string">&#x27;Lucy&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 user 表的数据如下 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span> user_id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">1</span> <span class="operator">|</span> Tim  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>       <span class="number">3</span> <span class="operator">|</span> Jim  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">20</span> <span class="operator">|</span> Tom  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">21</span> <span class="operator">|</span> Lucy <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------+------+</span></span><br></pre></td></tr></table></figure>
+<h3 id="如何查看自增列的值"><a href="#如何查看自增列的值" class="headerlink" title="如何查看自增列的值"></a>如何查看自增列的值</h3><ol>
+<li><p>从 <code>SHOW CREATE TABLE</code> 语句输出的表定义中查看自增列的值</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>`\G</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">    <span class="keyword">Table</span>: <span class="keyword">user</span></span><br><span class="line"><span class="keyword">Create</span> <span class="keyword">Table</span>: <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">`user_id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">`name` <span class="type">varchar</span>(<span class="number">45</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line"><span class="keyword">PRIMARY</span> KEY (`user_id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">22</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci</span><br></pre></td></tr></table></figure>
+<p> 通过 <code>AUTO_INCREMENT=22</code> 可知自增列的下一个值是 22</p>
+</li>
+<li><p>从数据库信息表中查询自增列的值</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> AUTO_INCREMENT</span><br><span class="line"><span class="keyword">FROM</span> INFORMATION_SCHEMA.TABLES</span><br><span class="line"><span class="keyword">WHERE</span> TABLE_SCHEMA <span class="operator">=</span> <span class="string">&#x27;testdb&#x27;</span></span><br><span class="line"><span class="keyword">AND</span> TABLE_NAME <span class="operator">=</span> <span class="string">&#x27;user&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Output */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span> AUTO_INCREMENT <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span>             <span class="number">22</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br></pre></td></tr></table></figure>
+<p> 这种方式有时候并不准确。因为当重置或修改了表的 <code>AUTO_INCREMENT</code> 值之后，这里并不会立刻更新</p>
+</li>
+</ol>
+<h3 id="自定自增列初始值"><a href="#自定自增列初始值" class="headerlink" title="自定自增列初始值"></a>自定自增列初始值</h3><p>自增列的初始值默认是 1，但我们可以在创建表的时候设置一个自定义的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">  `user_id` <span class="type">INT</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">VARCHAR</span>(<span class="number">45</span>),</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`user_id`)</span><br><span class="line">) AUTO_INCREMENT <span class="operator">=</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="修改表的自增值"><a href="#修改表的自增值" class="headerlink" title="修改表的自增值"></a>修改表的自增值</h3><p>如果想重置或者修改表的自增值，可以使用 <code>ALTER TABLE</code> 语句修改表定义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` AUTO_INCREMENT <span class="operator">=</span> <span class="number">30</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如果这里设置的值小于等于表中自增列的最大值，最终设置的值还是这个最大值的下一个数值</p>
+<p>  比如，在 user 表中，我们修改 <code>AUTO_INCREMENT</code> 为 1，但 user 表的 <code>AUTO_INCREMENT</code> 的值还是 22</p>
+</li>
+<li><p>当修改了表的 <code>AUTO_INCREMENT</code> 值之后， INFORMATION_SCHEMA.TABLES 表中的 <code>AUTO_INCREMENT</code> 列并不会立刻更新。可以使用 <code>SHOW CREATE TABLE</code> 语句查看</p>
+</li>
+</ul>
+<h2 id="GENERATED-COLUMN"><a href="#GENERATED-COLUMN" class="headerlink" title="GENERATED COLUMN"></a>GENERATED COLUMN</h2><p>在 MySQL 中，生成列（GENERATED COLUMN）是一个特殊的列，它的值会根据列定义中的表达式自动计算得出。并且，你不能直接写入或更新生成列的值</p>
+<p>生成列有 2 种类型：</p>
+<ul>
+<li>虚拟生成列：列值不会被存储下来。当读取该列时，MySQL 自动计算该列的值。</li>
+<li>存储生成列：当插入或修改数据时，MySQL 自动计算该列的值并存储在磁盘上</li>
+</ul>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">col_name data_type</span><br><span class="line">  [GENERATED ALWAYS] <span class="keyword">AS</span> (expr) [VIRTUAL <span class="operator">|</span> STORED]</span><br><span class="line">  [<span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>]</span><br><span class="line">  [<span class="keyword">UNIQUE</span> [KEY]]</span><br><span class="line">  [[<span class="keyword">PRIMARY</span>] KEY]</span><br><span class="line">  [COMMENT <span class="string">&#x27;string&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>GENERATED ALWAYS</code> 关键字指示此列是一个生成列。它是可选的</p>
+</li>
+<li><p><code>AS (expr)</code> 设置此生成列的表达式</p>
+</li>
+<li><p><code>VIRTUAL</code> 或 <code>STORED</code> 关键字指示了是否存储列值。这是可选的</p>
+<ul>
+<li><code>VIRTUAL</code> 列值不会被存储。当读取该列时，MySQL 自动计算该列的值。它是默认值</li>
+<li><code>STORED</code> 当插入或修改数据时，MySQL 自动计算该列的值并存储下来</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建一个新表 order_item 并插入数据 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> order_item (</span><br><span class="line">  order_item_id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  goods <span class="type">VARCHAR</span>(<span class="number">45</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  price <span class="type">DECIMAL</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  quantity <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> order_item (goods, price, quantity)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;Apple&#x27;</span>, <span class="number">5</span>, <span class="number">3</span>), (<span class="string">&#x27;Peach&#x27;</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 order_item 表中的数据 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------+-------+----------+</span></span><br><span class="line"><span class="operator">|</span> order_id <span class="operator">|</span> goods <span class="operator">|</span> price <span class="operator">|</span> quantity <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------+-------+----------+</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">1</span> <span class="operator">|</span> Apple <span class="operator">|</span>     <span class="number">5</span> <span class="operator">|</span>        <span class="number">3</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>        <span class="number">2</span> <span class="operator">|</span> Peach <span class="operator">|</span>     <span class="number">4</span> <span class="operator">|</span>        <span class="number">4</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------+-------+----------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 使用生成列计算总金额 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> order_item</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> total_amount <span class="type">DECIMAL</span></span><br><span class="line">  GENERATED ALWAYS <span class="keyword">AS</span> (price <span class="operator">*</span> quantity) STORED;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 order_item 表的结构 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+---------------+------+-----+---------+------------------+</span></span><br><span class="line"><span class="operator">|</span> Field        <span class="operator">|</span> Type          <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+---------------+------+-----+---------+------------------+</span></span><br><span class="line"><span class="operator">|</span> order_id     <span class="operator">|</span> <span class="type">int</span>           <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> auto_increment   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> goods        <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">45</span>)   <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> price        <span class="operator">|</span> <span class="type">decimal</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> quantity     <span class="operator">|</span> <span class="type">int</span>           <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> total_amount <span class="operator">|</span> <span class="type">decimal</span>(<span class="number">10</span>,<span class="number">0</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> STORED GENERATED <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------+---------------+------+-----+---------+------------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 此时 order_item 的数据 */</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------+----------+--------------+</span></span><br><span class="line"><span class="operator">|</span> goods <span class="operator">|</span> price <span class="operator">|</span> quantity <span class="operator">|</span> total_amount <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------+----------+--------------+</span></span><br><span class="line"><span class="operator">|</span> Apple <span class="operator">|</span>     <span class="number">5</span> <span class="operator">|</span>        <span class="number">3</span> <span class="operator">|</span>           <span class="number">15</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> Peach <span class="operator">|</span>     <span class="number">4</span> <span class="operator">|</span>        <span class="number">4</span> <span class="operator">|</span>           <span class="number">16</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------+----------+--------------+</span></span><br></pre></td></tr></table></figure>
+<h2 id="UNIQUE-KEY"><a href="#UNIQUE-KEY" class="headerlink" title="UNIQUE KEY"></a>UNIQUE KEY</h2><p>唯一键也是一个常用的约束，用来保证表中的一列或几列的中的值是唯一的</p>
+<p>与主键相比，主键用于表示一个行的唯一性，主键的一般采用一个与业务无关的值，比如自增值，UUID 等。而唯一键一般用于约束与业务相关的数据的唯一性。主键列不能包含 NULL 值，而唯一键列可以包含 NULL 值</p>
+<p>语法格式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义一列为唯一键 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name(</span><br><span class="line">    ...,</span><br><span class="line">    column_name data_type <span class="keyword">UNIQUE</span>,</span><br><span class="line">    ...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义多列为唯一键 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name(</span><br><span class="line">   column_name1 column_definition,</span><br><span class="line">   column_name2 column_definition,</span><br><span class="line">   ...,</span><br><span class="line">   [<span class="keyword">CONSTRAINT</span> constraint_name]</span><br><span class="line">      <span class="keyword">UNIQUE</span>(column_name1,column_name2)</span><br><span class="line">);</span><br><span class="line"><span class="comment">/* CONSTRAINT constraint_name 用于定义一个约束的名称。 它是可选的。如果不定义约束名称， MySQL 会自动为他生成一个 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加唯一键 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> [<span class="keyword">CONSTRAINT</span> constraint_name] <span class="keyword">UNIQUE</span> (column_list);</span><br><span class="line"><span class="comment">/* 注意，如果现有表中的要设置为唯一键的列中已有重复数据，MySQL 服务器会返回错误 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除唯一键 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> constraint_name;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> INDEX index_name;</span><br><span class="line"><span class="keyword">DROP</span> INDEX index_name <span class="keyword">ON</span> table_name;</span><br></pre></td></tr></table></figure>
+<h3 id="唯一键与-NULL"><a href="#唯一键与-NULL" class="headerlink" title="唯一键与 NULL"></a>唯一键与 NULL</h3><p>不像主键，唯一键允许其中的列接受 NULL 值。但是，NULL 值会破坏唯一键约束。也就是唯一键对 NULL 值无效</p>
+<h2 id="NOT-NULL"><a href="#NOT-NULL" class="headerlink" title="NOT NULL"></a>NOT NULL</h2><p><code>NOT NULL</code> 用来约束列中的值不能为 <code>NULL</code> 值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义 NOT NULL 列 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  ...</span><br><span class="line">  column_name data_type <span class="keyword">NOT</span> <span class="keyword">NULL</span> ...,</span><br><span class="line">  ...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 添加 NOT NULL 约束 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">MODIFY column_name data_type <span class="keyword">NOT</span> <span class="keyword">NULL</span> ...;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除 NOT NULL 约束 */</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">MODIFY column_name data_type ...;</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL-数据类型"><a href="#MySQL-数据类型" class="headerlink" title="MySQL 数据类型"></a>MySQL 数据类型</h2><p>MySQL 中的数据类型包括以下几个大类：</p>
+<ul>
+<li>字符串类型</li>
+<li>数字类型</li>
+<li>日期和时间类型</li>
+<li>二进制类型</li>
+<li>地理位置数据类型</li>
+<li>JSON 数据类型</li>
+</ul>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><p>字符串是最常用的数据类型，它可以用来存储一段文本。比如我们存储名称、地址等，都需要用到字符串数据类型。在 MySQL 中，可以使用纯文本或者二进制方式来存储字符串。MySQL 提供了很多数据类型来存储字符串，最常用的是 <code>VARCHAR</code> 和 <code>CHAR</code></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符串类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">VARCHAR</td>
+<td style="text-align:center">纯文本字符串，字符串长度是可变的</td>
+</tr>
+<tr>
+<td style="text-align:center">CHAR</td>
+<td style="text-align:center">纯文本字符串，字符串长度是固定的。当实际字段内容小于定义的长度时，MySQL 会用空白空白符好补足</td>
+</tr>
+<tr>
+<td style="text-align:center">VARBINARY</td>
+<td style="text-align:center">二进制字符串，字符串长度是可变的</td>
+</tr>
+<tr>
+<td style="text-align:center">BINARY</td>
+<td style="text-align:center">二进制字符串，字符串长度是固定的</td>
+</tr>
+<tr>
+<td style="text-align:center">TINYTEXT</td>
+<td style="text-align:center">二进制字符串，最大为 255 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">TEXT</td>
+<td style="text-align:center">二进制字符串，最大为 65K</td>
+</tr>
+<tr>
+<td style="text-align:center">MEDIUMTEXT</td>
+<td style="text-align:center">二进制字符串，最大为 16M</td>
+</tr>
+<tr>
+<td style="text-align:center">LONGTEXT</td>
+<td style="text-align:center">二进制字符串，最大为 4G</td>
+</tr>
+<tr>
+<td style="text-align:center">ENUM</td>
+<td style="text-align:center">枚举；每个列值可以分配一个 ENUM 成员</td>
+</tr>
+<tr>
+<td style="text-align:center">SET</td>
+<td style="text-align:center">集合；每个列值可以分配零个或多个 SET 成员</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h3><p>MySQL 支持 SQL 标准中所有的数字类型，包括整数和小数</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数字类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TINYINT</td>
+<td style="text-align:center">一个非常小的整数，最大为 1 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">SMALLINT</td>
+<td style="text-align:center">一个小整数，最大为 2 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">MEDIUMINT</td>
+<td style="text-align:center">一个中等大小的整数，最大为 3 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">INT</td>
+<td style="text-align:center">标准整数，最大为 4 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">BIGINT</td>
+<td style="text-align:center">一个大整数，最大为 8 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">DECIMAL</td>
+<td style="text-align:center">一个定点数</td>
+</tr>
+<tr>
+<td style="text-align:center">FLOAT</td>
+<td style="text-align:center">单精度浮点数，最大为 4 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">DOUBLE</td>
+<td style="text-align:center">双精度浮点数，最大为 8 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">BIT</td>
+<td style="text-align:center">按位存储</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a>日期和时间类型</h3><p>MySQL 提供了丰富的日期和时间类型，这包括日期(DATE)、时间(TIME)、日期和时间(DATETIME)、时间戳(TIMESTAMP)、年份(YEAR)。其中时间戳(TIMESTAMP)数据类型，可以用于跟踪表中一行的变化</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">日期和时间类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DATE</td>
+<td style="text-align:center">CCYY-MM-DD 格式的日期值</td>
+</tr>
+<tr>
+<td style="text-align:center">TIME</td>
+<td style="text-align:center">hh:mm:ss 格式的时间值</td>
+</tr>
+<tr>
+<td style="text-align:center">DATETIME</td>
+<td style="text-align:center">CCYY-MM-DD hh:mm:ss 格式的日期和时间值</td>
+</tr>
+<tr>
+<td style="text-align:center">TIMESTAMP</td>
+<td style="text-align:center">CCYY-MM-DD hh:mm:ss 格式的时间戳值</td>
+</tr>
+<tr>
+<td style="text-align:center">YEAR</td>
+<td style="text-align:center">CCYY 或 YY 格式的年份值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="二进制数据类型"><a href="#二进制数据类型" class="headerlink" title="二进制数据类型"></a>二进制数据类型</h3><p>除了字符串、数字、日期等类型， MySQL 还支持存储二进制的数据，比如图片文件等。如果要存储文件，就要用到 BLOB 类型。 BLOB 是 binary large object 的缩写，意思是二进制大对象</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">二进制类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TINYBLOB</td>
+<td style="text-align:center">最大为 255 个字节</td>
+</tr>
+<tr>
+<td style="text-align:center">BLOB</td>
+<td style="text-align:center">最大为 65K</td>
+</tr>
+<tr>
+<td style="text-align:center">MEDIUMBLOB</td>
+<td style="text-align:center">最大为 16M</td>
+</tr>
+<tr>
+<td style="text-align:center">LONGBLOB</td>
+<td style="text-align:center">最大为 4G</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="空间数据类型"><a href="#空间数据类型" class="headerlink" title="空间数据类型"></a>空间数据类型</h3><p>MySQL 支持许多包含各种几何和地理值的空间数据类型</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">空间数据类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GEOMETRY</td>
+<td style="text-align:center">任何类型的空间值</td>
+</tr>
+<tr>
+<td style="text-align:center">POINT</td>
+<td style="text-align:center">使用横坐标和纵坐标表示的一个点</td>
+</tr>
+<tr>
+<td style="text-align:center">LINESTRING</td>
+<td style="text-align:center">一条曲线（一个或多个 POINT 值）</td>
+</tr>
+<tr>
+<td style="text-align:center">POLYGON</td>
+<td style="text-align:center">一个多边形</td>
+</tr>
+<tr>
+<td style="text-align:center">GEOMETRYCOLLECTION</td>
+<td style="text-align:center">GEOMETRY 值的集合</td>
+</tr>
+<tr>
+<td style="text-align:center">MULTILINESTRING</td>
+<td style="text-align:center">LINESTRING 值的集合</td>
+</tr>
+<tr>
+<td style="text-align:center">MULTIPOINT</td>
+<td style="text-align:center">POINT 值的集合</td>
+</tr>
+<tr>
+<td style="text-align:center">MULTIPOLYGON</td>
+<td style="text-align:center">POLYGON 值的集合</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="JSON-数据类型"><a href="#JSON-数据类型" class="headerlink" title="JSON 数据类型"></a>JSON 数据类型</h3><p>MySQL 从 5.7.8 版本开始支持 JSON 数据类型，允许您更有效地存储和管理 JSON 文档。与 JSON 格式的字符串相比，原生 JSON 数据类型提供有如下的优点</p>
+<ul>
+<li>自动验证。MySQL 会对存储在 JSON 列中的 JSON 文档进行自动验证，无效的文档会产生错误</li>
+<li>最佳存储格式。MySQL 会将存储在 JSON 列中的 JSON 文档转换为允许快速读取文档元素的内部格式</li>
+</ul>
+<h3 id="布尔数据类型"><a href="#布尔数据类型" class="headerlink" title="布尔数据类型"></a>布尔数据类型</h3><p>MySQL 没有内置布尔数据类型。但是，MySQL 支持 <code>BOOLEAN</code> 或 <code>BOOL</code> 关键字，MySQL 会将 <code>BOOLEAN</code> 或 <code>BOOL</code> 类型转换为 <code>TINYINT(1)</code>。当我们插入 TRUE 或者 FALSE 时，MySQL 会存储为 1 或者 0</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/12/MySQL%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" rel="prev" title="MySQL学习笔记-1">
+                  <i class="fa fa-chevron-left"></i> MySQL学习笔记-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/27/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-7/" rel="next" title="Python3学习笔记-7">
+                  Python3学习笔记-7 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">花祭</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css/css?family=LXGW+WenKai:300,300italic,400,400italic,700,700italic%7CMonaco:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="游戏设置阻止全局时停 Steam -&gt; ARK: Survival Ecolved -&gt; 属性 -&gt; 通用 -&gt; 启动选项 -&gt; 添加代码 -preventhibernation  中文补丁替换 游戏原版的中文会导致一些 BUG，因此建议使用中文补丁替换原中文文件 路径：ARK\ShooterGame\Content\Localization\Game\zh 替换文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的ARK单人游戏设置">
+<meta property="og:url" content="http://example.com/2022/01/15/%E6%88%91%E7%9A%84ARK%E5%8D%95%E4%BA%BA%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="花祭的博客">
+<meta property="og:description" content="游戏设置阻止全局时停 Steam -&gt; ARK: Survival Ecolved -&gt; 属性 -&gt; 通用 -&gt; 启动选项 -&gt; 添加代码 -preventhibernation  中文补丁替换 游戏原版的中文会导致一些 BUG，因此建议使用中文补丁替换原中文文件 路径：ARK\ShooterGame\Content\Localization\Game\zh 替换文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-15T01:35:23.000Z">
+<meta property="article:modified_time" content="2023-04-01T13:20:12.438Z">
+<meta property="article:author" content="花祭">
+<meta property="article:tag" content="方舟生存进化">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/01/15/%E6%88%91%E7%9A%84ARK%E5%8D%95%E4%BA%BA%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/01/15/%E6%88%91%E7%9A%84ARK%E5%8D%95%E4%BA%BA%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/","path":"2022/01/15/我的ARK单人游戏设置/","title":"我的ARK单人游戏设置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>我的ARK单人游戏设置 | 花祭的博客</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">花祭的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">游戏设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E5%85%A8%E5%B1%80%E6%97%B6%E5%81%9C"><span class="nav-number">1.1.</span> <span class="nav-text">阻止全局时停</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E8%A1%A5%E4%B8%81%E6%9B%BF%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">中文补丁替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E5%B8%A7%E7%8E%87%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">锁帧率设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8-MOD-%E4%BF%AE%E6%94%B9%E7%89%A9%E5%93%81%E5%8F%A0%E5%8A%A0%E9%99%90%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">不使用 MOD 修改物品叠加限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E6%81%90%E9%BE%99%E7%AD%89%E7%BA%A7%E4%B8%8A%E9%99%90"><span class="nav-number">1.5.</span> <span class="nav-text">通过配置文件修改恐龙等级上限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E9%99%A4%E9%87%8E%E7%94%9F%E6%81%90%E9%BE%99%E4%BB%A3%E7%A0%81"><span class="nav-number">1.6.</span> <span class="nav-text">清除野生恐龙代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AD%91%E7%89%A9%E6%8B%BE%E5%8F%96%E6%97%B6%E9%97%B4%E4%BF%AE%E6%94%B9"><span class="nav-number">1.7.</span> <span class="nav-text">建筑物拾取时间修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%80%E6%AC%A1%E7%95%99%E6%BB%A1%E7%97%95"><span class="nav-number">1.8.</span> <span class="nav-text">设置一次留满痕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE%E6%81%90%E9%BE%99%E9%A2%9C%E8%89%B2"><span class="nav-number">1.9.</span> <span class="nav-text">代码设置恐龙颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E4%BA%BA%E7%89%A9%EF%BC%8C%E6%81%90%E9%BE%99%E5%8A%A0%E7%82%B9%E4%B8%8A%E9%99%90"><span class="nav-number">1.10.</span> <span class="nav-text">本地文件修改人物，恐龙加点上限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%BB%88%E7%AB%AF%E4%B8%8A%E4%BC%A0%E7%89%A9%E5%93%81%EF%BC%8C%E6%81%90%E9%BE%99%E6%95%B0%E9%87%8F%E4%B8%8A%E9%99%90"><span class="nav-number">1.11.</span> <span class="nav-text">本地文件修改终端上传物品，恐龙数量上限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E6%9C%BA%E6%B8%B8%E6%88%8F%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.12.</span> <span class="nav-text">单机游戏常用设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">模组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E7%9A%84%E6%A8%A1%E7%BB%84"><span class="nav-number">2.1.</span> <span class="nav-text">启用的模组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A8%A1%E7%BB%84"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础模组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E8%B6%A3%E5%91%B3%E6%80%A7%E3%80%81%E5%8A%9F%E8%83%BD%E6%80%A7%E6%A8%A1%E7%BB%84"><span class="nav-number">2.1.2.</span> <span class="nav-text">附加趣味性、功能性模组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%90%AF%E7%94%A8%E7%9A%84%E6%A8%A1%E7%BB%84"><span class="nav-number">2.2.</span> <span class="nav-text">未启用的模组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Dino-Levels"><span class="nav-number">2.3.</span> <span class="nav-text">Custom Dino Levels</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Any-Colour-Sets"><span class="nav-number">2.4.</span> <span class="nav-text">Any Colour Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#S"><span class="nav-number">2.5.</span> <span class="nav-text">S+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-2"><span class="nav-number">2.5.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bitou2k%E2%80%99s-Binocular"><span class="nav-number">2.6.</span> <span class="nav-text">Bitou2k’s Binocular</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-3"><span class="nav-number">2.6.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Creature-Finder-Deluxe"><span class="nav-number">2.7.</span> <span class="nav-text">Creature Finder Deluxe</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-4"><span class="nav-number">2.7.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dino-Storage-v2"><span class="nav-number">2.8.</span> <span class="nav-text">Dino Storage v2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BetterDinos"><span class="nav-number">2.9.</span> <span class="nav-text">BetterDinos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chair-of-the-impatient"><span class="nav-number">2.10.</span> <span class="nav-text">Chair of the impatient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cement-Mixer"><span class="nav-number">2.11.</span> <span class="nav-text">Cement Mixer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leathals-Reusables"><span class="nav-number">2.12.</span> <span class="nav-text">Leathals Reusables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Human-NPCS"><span class="nav-number">2.13.</span> <span class="nav-text">Human NPCS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Tombstone-Inventory-recovery-after-death"><span class="nav-number">2.14.</span> <span class="nav-text">The Tombstone (Inventory recovery after death)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Medicines-v3"><span class="nav-number">2.15.</span> <span class="nav-text">Medicines v3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-5"><span class="nav-number">2.15.1.</span> <span class="nav-text">配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARK-Additions-The-Collection"><span class="nav-number">2.16.</span> <span class="nav-text">ARK Additions: The Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Acrocanthosaurus-%E9%AB%98%E8%84%8A%E9%BE%99"><span class="nav-number">2.16.1.</span> <span class="nav-text">Acrocanthosaurus 高脊龙</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E5%B8%83"><span class="nav-number">2.16.1.1.</span> <span class="nav-text">分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%89%E8%90%BD%E7%89%A9"><span class="nav-number">2.16.1.2.</span> <span class="nav-text">掉落物</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97"><span class="nav-number">2.16.1.3.</span> <span class="nav-text">对抗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A9%AF%E6%9C%8D"><span class="nav-number">2.16.1.4.</span> <span class="nav-text">驯服</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6"><span class="nav-number">2.16.1.5.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%AE%E6%BC%94%E8%A7%92%E8%89%B2"><span class="nav-number">2.16.1.6.</span> <span class="nav-text">扮演角色</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Summon-Savage-Acro-%E9%87%8E%E8%9B%AE%E9%AB%98%E8%84%8A%E9%BE%99-Boss"><span class="nav-number">2.16.1.7.</span> <span class="nav-text">Summon Savage Acro 野蛮高脊龙 Boss</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Brachiosaurus-%E8%85%95%E9%BE%99"><span class="nav-number">2.16.2.</span> <span class="nav-text">Brachiosaurus 腕龙</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E5%B8%83-1"><span class="nav-number">2.16.2.1.</span> <span class="nav-text">分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%89%E8%90%BD%E7%89%A9-1"><span class="nav-number">2.16.2.2.</span> <span class="nav-text">掉落物</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97-1"><span class="nav-number">2.16.2.3.</span> <span class="nav-text">对抗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A9%AF%E6%9C%8D-1"><span class="nav-number">2.16.2.4.</span> <span class="nav-text">驯服</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6-1"><span class="nav-number">2.16.2.5.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%AE%E6%BC%94%E8%A7%92%E8%89%B2-1"><span class="nav-number">2.16.2.6.</span> <span class="nav-text">扮演角色</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ceratosaurus-%E8%A7%92%E9%BC%BB%E9%BE%99"><span class="nav-number">2.16.3.</span> <span class="nav-text">Ceratosaurus 角鼻龙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concavenator-%E9%A9%BC%E8%83%8C%E9%BE%99"><span class="nav-number">2.16.4.</span> <span class="nav-text">Concavenator 驼背龙</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E5%B8%83-2"><span class="nav-number">2.16.4.1.</span> <span class="nav-text">分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%89%E8%90%BD%E7%89%A9-2"><span class="nav-number">2.16.4.2.</span> <span class="nav-text">掉落物</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97-2"><span class="nav-number">2.16.4.3.</span> <span class="nav-text">对抗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A9%AF%E6%9C%8D-2"><span class="nav-number">2.16.4.4.</span> <span class="nav-text">驯服</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6-2"><span class="nav-number">2.16.4.5.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%AE%E6%BC%94%E8%A7%92%E8%89%B2-2"><span class="nav-number">2.16.4.6.</span> <span class="nav-text">扮演角色</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cryolophosaurus-%E5%86%B0%E8%84%8A%E9%BE%99"><span class="nav-number">2.16.5.</span> <span class="nav-text">Cryolophosaurus 冰脊龙</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E5%B8%83-3"><span class="nav-number">2.16.5.1.</span> <span class="nav-text">分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%89%E8%90%BD%E7%89%A9-3"><span class="nav-number">2.16.5.2.</span> <span class="nav-text">掉落物</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97-3"><span class="nav-number">2.16.5.3.</span> <span class="nav-text">对抗</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A9%AF%E6%9C%8D-3"><span class="nav-number">2.16.5.4.</span> <span class="nav-text">驯服</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6-3"><span class="nav-number">2.16.5.5.</span> <span class="nav-text">控制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%AE%E6%BC%94%E8%A7%92%E8%89%B2-3"><span class="nav-number">2.16.5.6.</span> <span class="nav-text">扮演角色</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Helicoprion-%E6%97%8B%E9%BD%BF%E9%B2%A8"><span class="nav-number">2.16.6.</span> <span class="nav-text">Helicoprion 旋齿鲨</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xiphactinus-%E5%89%91%E5%B0%84%E9%B1%BC"><span class="nav-number">2.16.7.</span> <span class="nav-text">Xiphactinus 剑射鱼</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARK-Additions-Domination-Rex"><span class="nav-number">2.17.</span> <span class="nav-text">ARK Additions: Domination Rex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%A8%A1%E7%BB%84"><span class="nav-number">2.18.</span> <span class="nav-text">其他模组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%BB%E9%9D%A2%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">画面设置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="花祭"
+      src="/images/my_avatar.JPG">
+  <p class="site-author-name" itemprop="name">花祭</p>
+  <div class="site-description" itemprop="description">一个简单的小博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuaJiYa520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuaJiYa520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Hua.JiYa@outlook.com" title="E-Mail → mailto:Hua.JiYa@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/HuaJiYa520" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E6%88%91%E7%9A%84ARK%E5%8D%95%E4%BA%BA%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_avatar.JPG">
+      <meta itemprop="name" content="花祭">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花祭的博客">
+      <meta itemprop="description" content="一个简单的小博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="我的ARK单人游戏设置 | 花祭的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的ARK单人游戏设置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-15 09:35:23" itemprop="dateCreated datePublished" datetime="2022-01-15T09:35:23+08:00">2022-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-01 21:20:12" itemprop="dateModified" datetime="2023-04-01T21:20:12+08:00">2023-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Games/" itemprop="url" rel="index"><span itemprop="name">Games</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="游戏设置"><a href="#游戏设置" class="headerlink" title="游戏设置"></a>游戏设置</h2><h3 id="阻止全局时停"><a href="#阻止全局时停" class="headerlink" title="阻止全局时停"></a>阻止全局时停</h3><ul>
+<li>Steam -&gt; ARK: Survival Ecolved -&gt; 属性 -&gt; 通用 -&gt; 启动选项 -&gt; 添加代码 <code>-preventhibernation</code></li>
+</ul>
+<h3 id="中文补丁替换"><a href="#中文补丁替换" class="headerlink" title="中文补丁替换"></a>中文补丁替换</h3><ul>
+<li>游戏原版的中文会导致一些 BUG，因此建议使用中文补丁替换原中文文件</li>
+<li>路径：ARK\ShooterGame\Content\Localization\Game\zh</li>
+<li>替换文件：ShooterGame.locres</li>
+<li>相关网址：&lt;<a target="_blank" rel="noopener" href="http://c.tieba.baidu.com/p/7881686866?pid=144457650554&amp;cid=#144457650554&gt;">http://c.tieba.baidu.com/p/7881686866?pid=144457650554&amp;cid=#144457650554&gt;</a></li>
+</ul>
+<span id="more"></span>
+<h3 id="锁帧率设置"><a href="#锁帧率设置" class="headerlink" title="锁帧率设置"></a>锁帧率设置</h3><ul>
+<li>路径：ARK\ShooterGame\Config</li>
+<li>修改文件：DefaultEngine.ini</li>
+<li>修改项：在 <code>[/Script/Engine.RendererSettings]</code> 项下面新增一行 <code>t.MaxFps=90</code></li>
+<li>参数说明：设置最大帧率为 90</li>
+</ul>
+<h3 id="不使用-MOD-修改物品叠加限制"><a href="#不使用-MOD-修改物品叠加限制" class="headerlink" title="不使用 MOD 修改物品叠加限制"></a>不使用 MOD 修改物品叠加限制</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：<code>ItemStackSizeMultiplier</code></li>
+<li>默认值：1.000000</li>
+<li>修改值：1.0</li>
+</ul>
+<h3 id="通过配置文件修改恐龙等级上限"><a href="#通过配置文件修改恐龙等级上限" class="headerlink" title="通过配置文件修改恐龙等级上限"></a>通过配置文件修改恐龙等级上限</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：在 <code>[ServerSettings]</code> 项下面新增一行 <code>OverrideOfficialDifficulty=5.000000</code></li>
+<li>默认值：5.0</li>
+<li>修改值：7.0</li>
+<li>参数说明：默认值为 5.0 代表着游戏的默认最高难度。恐龙最高等级是参数的 30 倍，即 5 对应的恐龙最高等级为 150</li>
+</ul>
+<h3 id="清除野生恐龙代码"><a href="#清除野生恐龙代码" class="headerlink" title="清除野生恐龙代码"></a>清除野生恐龙代码</h3><ul>
+<li>进入游戏，呼出控制台，输入 <code>cheat destroywilddinos</code></li>
+</ul>
+<h3 id="建筑物拾取时间修改"><a href="#建筑物拾取时间修改" class="headerlink" title="建筑物拾取时间修改"></a>建筑物拾取时间修改</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：<code>StructurePickupTimeAfterPlacement</code></li>
+<li>默认值：30.000000(s)</li>
+<li>修改值：120.0</li>
+<li>设置永久可拾取：添加一行 <code>AlwaysAllowStructurePickup=True</code></li>
+</ul>
+<h3 id="设置一次留满痕"><a href="#设置一次留满痕" class="headerlink" title="设置一次留满痕"></a>设置一次留满痕</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项<ol>
+<li>修改留痕间隔系数 0.01</li>
+<li><code>[/Script/ShooterGame.ShooterGameUserSettings]</code> 下 新增 <code>BabyImprintAmountMultiplier=10000</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="代码设置恐龙颜色"><a href="#代码设置恐龙颜色" class="headerlink" title="代码设置恐龙颜色"></a>代码设置恐龙颜色</h3><ul>
+<li>在控制台使用代码 <code>SetTargetDinoColor 0 1</code> 对目标设置颜色，第一个数字代表色区，范围0-5。第二个数字代表颜色代号。</li>
+</ul>
+<h3 id="本地文件修改人物，恐龙加点上限"><a href="#本地文件修改人物，恐龙加点上限" class="headerlink" title="本地文件修改人物，恐龙加点上限"></a>本地文件修改人物，恐龙加点上限</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：Game.ini</li>
+<li>修改项<ul>
+<li>将相关配置复制粘贴至Game.ini最后即可</li>
+</ul>
+</li>
+</ul>
+<h3 id="本地文件修改终端上传物品，恐龙数量上限"><a href="#本地文件修改终端上传物品，恐龙数量上限" class="headerlink" title="本地文件修改终端上传物品，恐龙数量上限"></a>本地文件修改终端上传物品，恐龙数量上限</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项<ul>
+<li>物品：在 <code>[ServerSettings]</code> 下新增 <code>MaxTributeItems=150</code></li>
+<li>恐龙：在 <code>[ServerSettings]</code> 下新增 <code>MaxTributeDinos=270</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="单机游戏常用设置"><a href="#单机游戏常用设置" class="headerlink" title="单机游戏常用设置"></a>单机游戏常用设置</h3><ul>
+<li><p>通用</p>
+<ul>
+<li>难度等级：1.0</li>
+<li>恐龙攻击伤害的系数：1.0</li>
+<li>玩家攻击伤害的系数：1.0</li>
+<li>建筑物攻击伤害的系数：1.0</li>
+<li>玩家承受伤害的系数：1.0</li>
+<li>恐龙承受伤害的系数：1.0</li>
+<li>建筑物承受伤害的系数：1.0</li>
+<li>经验值加成系数：3.0</li>
+<li>驯服速度系数：5.0</li>
+<li>建筑物修复冷却时间的系数：0</li>
+<li>恐龙炮塔伤害的系数：1.0</li>
+<li>恐龙采集伤害的系数：5.0</li>
+<li>资源获取数量的系数：3.0</li>
+<li>玩家水分消耗速度：1.0</li>
+<li>玩家食物消耗速度：1.0</li>
+<li>恐龙食物消耗速度：3.0</li>
+<li>玩家耐力消耗速度：0.8</li>
+<li>恐龙耐力消耗速度：1.0</li>
+<li>玩家生命回复速度：1.3</li>
+<li>恐龙生命回复速度：1.0</li>
+<li>玩家采集伤害的系数：3.5</li>
+<li>恐龙总量的系数：1.5</li>
+<li>非专用共享主机距离：1.0</li>
+<li>[x] 允许第三人称视角</li>
+<li>[ ] 启用全服语音聊天</li>
+<li>[x] 启用本地文字聊天</li>
+<li>[x] 玩家离开提醒</li>
+<li>[x] 玩家进入提醒</li>
+<li>[x] 管理员日志</li>
+<li>[x] 显示准心</li>
+<li>[ ] 强制无HUD</li>
+<li>[ ] 禁用补给箱</li>
+<li>[ ] 硬汉模式</li>
+<li>[ ] PVE模式</li>
+<li>[x] 禁用友军伤害</li>
+<li>[x] 小地图显示玩家位置</li>
+<li>[ ] 禁止下载贡品</li>
+<li>[ ] 禁止下载生存者</li>
+<li>[ ] 禁止下载物品</li>
+<li>[ ] 禁止下载恐龙</li>
+<li>[x] 最高难度</li>
+<li>[x] PVP模式允许调整伽马值</li>
+<li>[ ] 使用单人游戏设置</li>
+<li>[x] 使用尸体位置标记</li>
+<li>[x] 禁用建筑物碰撞限制</li>
+<li>[x] 允许平台鞍上建造多层建筑</li>
+<li>[x] 允许多次重置属性点</li>
+<li>[ ] 禁止驯养恐龙</li>
+<li>[ ] 禁止骑乘恐龙</li>
+<li>[x] 显示建造模式</li>
+<li>[x] 允许升级飞行宠速度</li>
+</ul>
+</li>
+<li><p>高级</p>
+<ul>
+<li>[ ] 允许PVE计时器</li>
+<li>[ ] 允许PVE使用系统时间</li>
+<li>[ ] 禁用部落联盟</li>
+<li>[x] PVE允许宣战</li>
+<li>[ ] PVE允许取消宣战</li>
+<li>[ ] 禁用PVE调整伽马值</li>
+<li>[x] 允许PVE洞穴口建筑</li>
+<li>[x] 允许PVE模式飞行宠抓物</li>
+<li>[ ] 扩大资源点附近禁造区域的大小</li>
+<li>[x] PVE禁用建筑物自动损毁</li>
+<li>[ ] PVE禁用恐龙自动清除</li>
+<li>PVE建筑物自动损毁倒计时长的系数：1.0</li>
+<li>PVE恐龙自动清除倒计时长的系数：1.0</li>
+<li>PVE自动开始时间（秒）：0.0</li>
+<li>PVE自动结束时间（秒）：0.0</li>
+<li>[ ] 禁用疾病</li>
+<li>[x] 非永久性疾病</li>
+<li>[x] 强制允许洞穴飞行</li>
+<li>[ ] PVP恐龙自动清除</li>
+<li>[x] 允许平台鞍上放置炮塔</li>
+<li>[x] 增加PVE重生时间间隔</li>
+<li>[ ] 启用下线保护</li>
+<li>下线保护等待时间：0.01</li>
+<li>PVP重生间隔周期：300</li>
+<li>PVP重生间隔系数：2.0</li>
+<li>PVP重生间隔基数：59.999</li>
+<li>PVP特殊区域建筑物受到伤害加成的系数：6.0</li>
+<li>建筑物周围禁止资源刷新半径的系数：0.5</li>
+<li>世界设置<ul>
+<li>[ ] 禁用恐龙留痕增益</li>
+<li>[ ] 允许他人完成留痕任务</li>
+<li>排序间隔：1.0</li>
+<li>产蛋间隔：0.07</li>
+<li>交配间隔：0.01</li>
+<li>蛋孵化速度：100.0</li>
+<li>幼兽成长速度：100.0</li>
+<li>幼兽食物消耗速度：1.0</li>
+<li>资源数量：3.0</li>
+<li>资源刷新周期：0.05</li>
+<li>留痕间隔系数：0.01</li>
+<li>留痕效果持续时长的系数：6.0</li>
+<li>留痕度降低系数：1.0</li>
+<li>留痕属性缩放系数：6.0</li>
+<li>昼夜循环系数：1.3</li>
+<li>白天时间速度：1.0</li>
+<li>夜晚时间速度：5.0</li>
+<li>腐坏时间：0.0</li>
+<li>物品分解时间：2</li>
+<li>尸体分解时间：2</li>
+<li>禁止资源刷新半径——玩家：0.7</li>
+<li>禁止资源刷新半径——建筑物：0.7</li>
+<li>作物生长速度：20</li>
+<li>作物枯萎速度：20</li>
+</ul>
+</li>
+<li>野生恐龙每级属性<ul>
+<li>生命值：1.0</li>
+<li>耐力：1.0</li>
+<li>眩晕：1.0</li>
+<li>氧气：1.0</li>
+<li>食物：1.0</li>
+<li>水：1.0</li>
+<li>温度：1.0</li>
+<li>重量：1.0</li>
+<li>伤害：1.0</li>
+<li>速度：1.0</li>
+<li>抗性：1.0</li>
+</ul>
+</li>
+<li>已驯服恐龙每级属性<ul>
+<li>生命值：0.2</li>
+<li>耐力：3.0</li>
+<li>眩晕：1.0</li>
+<li>氧气：1.0</li>
+<li>食物：1.0</li>
+<li>水：1.0</li>
+<li>温度：1.0</li>
+<li>重量：10</li>
+<li>伤害：0.17</li>
+<li>速度：1.0</li>
+<li>抗性：1.0</li>
+</ul>
+</li>
+<li>已驯服恐龙每级增加属性：<ul>
+<li>生命值：0.14</li>
+<li>耐力：3.0</li>
+<li>眩晕：1.0</li>
+<li>氧气：1.0</li>
+<li>食物：1.0</li>
+<li>水：1.0</li>
+<li>温度：1.0</li>
+<li>重量：10</li>
+<li>伤害：0.14</li>
+<li>速度：1.0</li>
+<li>抗性：1.0</li>
+</ul>
+</li>
+<li>已驯服恐龙属性加成：<ul>
+<li>生命值：0.44</li>
+<li>耐力：3.0</li>
+<li>眩晕：1.0</li>
+<li>氧气：1.0</li>
+<li>食物：1.0</li>
+<li>水：1.0</li>
+<li>温度：1.0</li>
+<li>重量：10</li>
+<li>伤害：0.44</li>
+<li>速度：1.0</li>
+<li>抗性：1.0</li>
+</ul>
+</li>
+<li>玩家角色每级属性：<ul>
+<li>生命值：1.0</li>
+<li>耐力：1.2</li>
+<li>眩晕：1.0</li>
+<li>氧气：1.0</li>
+<li>食物：1.0</li>
+<li>水：1.0</li>
+<li>温度：1.0</li>
+<li>重量：20.0</li>
+<li>伤害：1.0</li>
+<li>速度：1.0</li>
+<li>抗性：1.0</li>
+</ul>
+</li>
+<li>经验值系数：<ul>
+<li>一般：1.0</li>
+<li>击杀：1.0</li>
+<li>采集：1.0</li>
+<li>制作：1.0</li>
+<li>特殊：1.0</li>
+</ul>
+</li>
+<li>其他设置<ul>
+<li>部落成员上限数：0</li>
+<li>玩家最大经验点数：0</li>
+<li>恐龙最大经验点数：0</li>
+<li>[ ] 允许站在非友方飞行单位的平台鞍上</li>
+<li>[x] 允许拒马对野生或无骑手的恐龙造成伤害</li>
+<li>[ ] 仅启用指定的印痕技能</li>
+<li>[x] 显示浮动伤害信息</li>
+<li>[x] 启用自定义食谱</li>
+<li>[x] 允许泰坦类恐龙进食</li>
+<li>泰坦类恐龙食物消耗速度：1.0</li>
+<li>自定义食谱效果：6.0</li>
+<li>制造速度对自定义食谱的影响系数：6.0</li>
+<li>制作技能加成的系数：5.0</li>
+<li>补给箱奖励品质：3.0</li>
+<li>渔获品质：3.0</li>
+<li>增加平台按建筑上限：5.0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="模组"><a href="#模组" class="headerlink" title="模组"></a>模组</h2><h3 id="启用的模组"><a href="#启用的模组" class="headerlink" title="启用的模组"></a>启用的模组</h3><h4 id="基础模组"><a href="#基础模组" class="headerlink" title="基础模组"></a>基础模组</h4><ul>
+<li><code>ARK Nucleus</code>，id=2566418613。控制台系MOD，可刷取恐龙，物品，模组物品等</li>
+<li><code>CS+ MOD(S+)</code>，id=1998877847。S+模组的汉化版本</li>
+<li><code>Kraken&#39;s Better Dinos</code>，id=1565015734。恐龙优化模组</li>
+<li><code>Awesome Spyglass</code>，id=1404697612。A镜</li>
+<li><code>HG Stacking Mod 5000-90 V316</code>，id=849985437。HG叠加模组</li>
+<li><code>Dino Storage V2</code>，id=1609138312。恐龙精灵球</li>
+<li><code>Awesome Teleporters</code>，id=889745138。传送器</li>
+<li><code>Upgrade Station V1.81</code>，id=821530042。可升级物品和图纸</li>
+<li><code>Chair of the impatient</code>，id=1701948682。时间加速椅子</li>
+<li><code>Any Color Sets</code>，id=2302876995。恐龙色彩模组</li>
+<li><code>Custom Dino levels</code>，id=2182894352。自定义恐龙等级</li>
+<li><code>The Tombstone (Inventory recovery after death)</code>,，id=1139981401。死亡自动获取物品，并在原地留下一个墓碑</li>
+<li><code>Creature Finder Deluxe (single player: read description)</code>，id=1591643730。全图恐龙搜寻模组</li>
+</ul>
+<h4 id="附加趣味性、功能性模组"><a href="#附加趣味性、功能性模组" class="headerlink" title="附加趣味性、功能性模组"></a>附加趣味性、功能性模组</h4><ul>
+<li><code>ARK Additions: The Collection!</code>，id=1522327484。添加了一些额外的生物</li>
+<li><code>ARK Additions: Domination Rex!</code>，id=1445395055。添加了暴虐霸王龙</li>
+<li><code>Eddys Weapon Attachments</code>，id=2520360874。增加武器扩容</li>
+<li><code>Leathals Reusables</code>，id=1967741708。增加反复使用的武器和工具</li>
+<li><code>Tranq Sniper</code>，id=2657711622。麻醉狙击枪(只能使用原版的麻醉镖，无法使用模组物品)</li>
+<li><code>Medicines v3</code>，id=2637993032。增加一些人物和恐龙的药物</li>
+<li><code>Meat Spoiler</code>，id=569786012。快速制造腐肉</li>
+<li><code>ys</code>，id=2627481742。原神等服装</li>
+</ul>
+<h3 id="未启用的模组"><a href="#未启用的模组" class="headerlink" title="未启用的模组"></a>未启用的模组</h3><ul>
+<li><code>Ultra Stacks</code>，id=761535755。物品减重叠加模组</li>
+<li><code>Bitou2k&#39;s Binocular</code>，id=1136125765。B镜</li>
+<li><code>Dino Tracker</code>，id=924933745。恐龙搜寻器(更换为全图搜寻)</li>
+<li><code>Dino Machines</code>，id=1988152145。增加一些特殊用品如似鸡龙发电机等(有BUG)</li>
+<li><code>Eco&#39;s Organic Saddles</code>，id=2314097347。增加几个庞马鞍</li>
+<li><code>Automatic Death Recovery</code>，id=1315534671。死亡自动获取原物品</li>
+<li><code>Dino Tracker</code>，id=924933745。恐龙搜寻器(暂时不用)</li>
+<li><code>DODOREX</code>，id=2646901816。增加渡渡霸王龙</li>
+<li><code>Human NPC&#39;s</code>，id=1443404076。增加野人</li>
+<li><code>Castles, Keeps</code>, and Forts Remastered，id=1814953878。增加城堡建筑</li>
+<li><code>Cement Mixer</code>，id=612588150。可以手动制造水泥</li>
+<li><code>eco&#39;s Empires</code> - Tokugawa，id=2053416662。增加日本风建筑</li>
+<li><code>HG Dino Color V1.5</code>，id=2597341089。HG恐龙染色模组</li>
+<li><code>HGPlus Resource Pulling V1.1</code>，HG资源拉取模组</li>
+<li><code>More Tranq Items</code>，id=2278341478。增加多项麻醉物品</li>
+</ul>
+<h3 id="Custom-Dino-Levels"><a href="#Custom-Dino-Levels" class="headerlink" title="Custom Dino Levels"></a>Custom Dino Levels</h3><p>该模组可以更加详细的设定野生恐龙的等级范围。有三种设定模式</p>
+<ol>
+<li><p>仙境模式<br>该模式下恐龙等级会同仙境、中心岛和水晶岛有相同的生成模式：尽管水平权重总体上仍向较低范围倾斜，但是高等级恐龙有了更高的生成概率。一些等级的恐龙将永远不会被生成：在最高难度下，这些等级是 5, 10, 30, 35, 40, 65, 70, 75, 80, 105, 110, 115, 120 和 125（该模组并不会主动将游戏设置为最高难度，如果需要，参考本文前面的“通过配置文件修改等级上限”）</p>
+</li>
+<li><p>均衡模式（默认模式）<br>该模式允许生成全等级范围的恐龙，5 级与 150 级的恐龙生成的概率是相同的。如果你需要自定义最小最大等级，该模式是必须激活的模式</p>
+</li>
+<li><p>高等级模式<br>该模式反转了原始游戏中高低等级恐龙生成的概率，因此将严重偏向生成高等级恐龙</p>
+</li>
+</ol>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li><p>修改项：<code>[CustomLevelDistrib]</code></p>
+<ul>
+<li><p>参数说明</p>
+<ul>
+<li><code>WantsRagLevels</code>, <code>WantsEqualLevels</code>, <code>WantsHighLevels</code> 三项中有且只有一项为 True</li>
+<li>恐龙等级由基础难度与设定范围相乘所得，如5*30=150，即恐龙等级为150</li>
+<li>MinLevel：设定普通恐龙等级范围的最小值</li>
+<li>MaxLevel：设定普通恐龙等级范围的最大值</li>
+<li>PreventBee：阻止等级影响到蜂王的等级，即蜂王等级还是游戏原设定</li>
+<li>PreventTitan：阻止泰坦受影响</li>
+<li>MinDrakeLevel：设定飞龙，岩龙的最小等级范围</li>
+<li>MaxDrakeLevel：设定飞龙，岩龙最大的等级范围</li>
+</ul>
+</li>
+<li><p>WantsRagLevels 类仙境恐龙等级设置样例</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MinLevel</span>=<span class="number">1.000000</span></span><br><span class="line"><span class="attr">MaxLevel</span>=<span class="number">30.000000</span></span><br><span class="line"><span class="attr">WantsEqualLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">WantsRagLevels</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">WantsHighLevels</span>=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WantsHighLevels 高等级恐龙设定样例</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MinLevel</span>=<span class="number">1.000000</span></span><br><span class="line"><span class="attr">MaxLevel</span>=<span class="number">30.000000</span></span><br><span class="line"><span class="attr">WantsEqualLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">WantsRagLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">WantsHighLevels</span>=<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WantsEqualLevels 平均恐龙等级设定样例</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">MinLevel</span>=<span class="number">10.000000</span></span><br><span class="line"><span class="attr">MaxLevel</span>=<span class="number">30.000000</span></span><br><span class="line"><span class="attr">WantsEqualLevels</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">WantsRagLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">WantsHighLevels</span>=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>我的个人设置</p>
+</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[CustomLevelDistrib]</span></span><br><span class="line"><span class="attr">WantsEqualLevels</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">WantsRagLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">WantsHighLevels</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">PreventTitan</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">PreventBee</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">MinLevel</span>=<span class="number">1.000000</span></span><br><span class="line"><span class="attr">MaxLevel</span>=<span class="number">40.000000</span></span><br><span class="line"><span class="attr">MinDrakeLevel</span>=<span class="number">20.000000</span></span><br><span class="line"><span class="attr">MaxDrakeLevel</span>=<span class="number">45.000000</span></span><br><span class="line"><span class="attr">MaxDeinonLevel</span>=<span class="number">45.000000</span></span><br></pre></td></tr></table></figure>
+<h3 id="Any-Colour-Sets"><a href="#Any-Colour-Sets" class="headerlink" title="Any Colour Sets"></a>Any Colour Sets</h3><p>该模组允许你自定义恐龙生成的颜色</p>
+<h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li><p>修改项：<code>[AnyColourSets]</code></p>
+<ul>
+<li>参数说明<ul>
+<li>ColoursetBPPaths: 将任何不属于该模组以及原生的颜色集添加到该模组的应用中时，需要在这里添加其路径，如 <code>ColoursetBPPaths=Blueprint&#39;/Game/Mods/AnyColourSets/CustomColourSets/DinoColorSet_ACSBioLumAberrant.DinoColorSet_ACSBioLumAberrant&#39;</code></li>
+<li>UseArkEvents: 默认为 False。该选项允许模组读取 <code>activeevent=</code> 配置的活动信息，并为所有恐龙激活适当的事件集</li>
+<li>ArkEventChance: 设定允许接收全局事件颜色集的机会。使用 0.01 到 100 之间的数字表示百分比</li>
+<li>UseCustomGlobalSets: 默认为 True。允许为所有恐龙使用自定义的颜色集</li>
+<li>UseAllSets: 默认为 False。该选项要求 <code>UseCustomGlobalSets</code> 选项为 True。允许全局颜色集使用 mod 已设置的颜色集</li>
+<li>GlobalColourSets: 设置用于所有恐龙生成时使用的颜色集。所有条目用逗号分隔，并且不要在每个逗号之前或之后加空格。任何不属于 ACS 或原生的颜色集必须被加入到 <code>ColoursetBPPaths</code> 中</li>
+<li>CustomGlobalColourSetChance: 设置恐龙获取自定颜色集的几率。如果启用了 <code>UseCustomGlobalSet</code>，则必须为该选项赋值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>我的个人设置</p>
+</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[AnyColourSets]</span></span><br><span class="line"><span class="attr">ColoursetBPPaths</span>=Blueprint<span class="string">&#x27;/Game/Mods/ExampleMod/Colours/DinoColorSet_RandomColours.DinoColorSet_RandomColours&#x27;</span></span><br><span class="line"><span class="attr">DisableSetOverrides</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">SetAppliedOrder</span>=<span class="number">0</span></span><br><span class="line"><span class="attr">GlobalColourSets</span>=DinoColorSet_ACSMoltenElementAberrant_C,DinoColorSet_ACSAquatic_C</span><br><span class="line"><span class="attr">UseCustomGlobalSets</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">CustomGlobalColourSetChance</span>=<span class="number">100</span></span><br><span class="line"><span class="attr">DinosToUseCustomSets</span>=argent_character_bp_c,raptor_character_bp_C,achatina_Character_bp_c,Achatina_Character_BP_C,Achatina_Character_BP_C,rex_Character_bp_c,rex_character_bp_C,</span><br><span class="line"><span class="attr">ColourSetsToUse</span>=DinoColorSet_ACSGlacial_C,SE_DinoColorSet_MegaWyvern_Fire_C,DinoColorSet_ACSVibrant_C,DinoColorSet_ACSVolcanic_C,DinoColorSet_ACSDeepOcean_C,DinoColorSet_ACSVolcanic_C,DinoColorSet_RandomColours_C</span><br><span class="line"><span class="attr">ChanceOfColourSet</span>=<span class="number">40</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">80</span>,</span><br><span class="line"><span class="attr">ExtraEntriesToCheck</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">UseSpecificGlobalChances</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">SpecificGlobalChancesDinos</span>=Achatina_Character_BP_C,Allo_Character_BP_C,Ankylo_Character_BP_C,</span><br><span class="line"><span class="attr">SpecificGlobalChances</span>=<span class="number">60</span>,<span class="number">20</span>,<span class="number">80</span></span><br><span class="line"><span class="attr">UseGlobalExcludeClasses</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">GlobalExcludeClasses</span>=Baryonyx_Character_BP_C,Toad_Character_BP_C,Doed_Character_BP_C,Rex_Character_bp_c</span><br></pre></td></tr></table></figure>
+<h3 id="S"><a href="#S" class="headerlink" title="S+"></a>S+</h3><p>S+ 模组提供了一系列比原版更加强大的建筑材料，制作工具等。中文版为 CS+ Mod (id=1998877847)</p>
+<h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>配置网址：&lt;<a target="_blank" rel="noopener" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTCz51gbAXrJjqpTySgqID0SvEScS6hBwpzEawIBj4h3l4iX0695S2TWgQYRaU6bL31h-IK_LLubGbO/pubhtml&gt;">https://docs.google.com/spreadsheets/d/e/2PACX-1vTCz51gbAXrJjqpTySgqID0SvEScS6hBwpzEawIBj4h3l4iX0695S2TWgQYRaU6bL31h-IK_LLubGbO/pubhtml&gt;</a></li>
+<li>修改项：[StructuresPlus]<ul>
+<li>参数说明<ul>
+<li><code>EnableEngramOverride=true</code> 覆盖原有图纸</li>
+<li><code>DisableUnlockingMapSpecificEngrams=false</code> 禁止解锁特定地图的印痕点</li>
+<li><code>ResourcePullRangeInFoundations=25</code> 拉取资源的基础范围</li>
+<li><code>ResourceTransferCooldown=1.0</code> 拉取资源的冷却时间</li>
+<li><code>BedCooldownTimeInSeconds=300</code> 床冷却时间</li>
+<li><code>BunkBedCooldownTimeInSeconds=120</code> 双层床冷却时间</li>
+<li><code>TekBedCooldownTimeInSeconds=60</code> 泰克床冷却时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[StructuresPlus]</span></span><br><span class="line"><span class="attr">EnableEngramOverride</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">DisableUnlockingMapSpecificEngrams</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">ResourcePullRangeInFoundations</span>=<span class="number">60</span></span><br><span class="line"><span class="attr">ResourceTransferCooldown</span>=<span class="number">0.1</span></span><br><span class="line"><span class="attr">BedCooldownTimeInSeconds</span>=<span class="number">30</span></span><br><span class="line"><span class="attr">BunkBedCooldownTimeInSeconds</span>=<span class="number">15</span></span><br><span class="line"><span class="attr">TekBedCooldownTimeInSeconds</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">PullResourceAdditions</span>=/Game/Mods/MyMod/Gravel/PrimalItemResource_Gravel_mymod.PrimalItemResource_Gravel_mymod</span><br></pre></td></tr></table></figure>
+<h3 id="Bitou2k’s-Binocular"><a href="#Bitou2k’s-Binocular" class="headerlink" title="Bitou2k’s Binocular"></a>Bitou2k’s Binocular</h3><p>B镜，可显示恐龙的当前状态、属性加点与驯服需要的食物。在瞄准时按下 Ctrl 键启用夜视功能，按下 R 键启用雷达功能，按下 G 键打开食物界面，按下 N 键打开恐龙属性点界面。B 镜左右两侧的数值是当前准心出的 GPS 坐标</p>
+<h4 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li><p>修改项：[B2kBinocular]</p>
+<ul>
+<li>参数说明<ul>
+<li><code>StatsDelay=0</code> 设置恐龙的信息面板出现的延迟。设置值为 0 到 10 之间的整数</li>
+<li><code>DisableTraceFloatingHUD=false</code> 只显示恐龙的信息而不显示建筑、玩家的信息</li>
+<li><code>DisableNightVision=false</code> 关闭夜视功能</li>
+<li><code>DisableRadarESP=false</code> 关闭雷达扫描功能</li>
+<li><code>DisableDinoPoints=false</code> 关闭恐龙点数显示功能</li>
+<li><code>DisableDinoFoods=false</code> 关闭恐龙食物显示功能</li>
+<li><code>PreventEnemyStats=false</code> 阻止显示任何敌对恐龙的信息</li>
+<li><code>PreventEnemyDinoPoints=false</code> 阻止显示敌对恐龙的点数信息</li>
+<li><code>AlwaysShowPointsColumn=false</code> 总是显示点数信息面板</li>
+<li><code>AlwaysShowFoodsColumn=false</code> 总是显示食物信息面板</li>
+<li><code>NoAimTargeting=false</code> 在不瞄准的情况下显示恐龙信息面板</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>我的个人设置</p>
+</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[B2kBinocular]</span></span><br><span class="line"><span class="attr">AlwaysShowPointsColumn</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">AlwaysShowFoodsColumn</span>=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Creature-Finder-Deluxe"><a href="#Creature-Finder-Deluxe" class="headerlink" title="Creature Finder Deluxe"></a>Creature Finder Deluxe</h3><p>寻找恐龙 MOD，单机模式下使用该 MOD 需要打开阻止全局时停功能，具体见前文所述</p>
+<p>该 MOD 最好放在 MOD 列表最后</p>
+<ul>
+<li><code>Shift F8</code> 打开恐龙寻找窗口</li>
+<li><code>F6,F7</code> 循环寻找已发现的生物</li>
+<li><code>F8</code> 打开恐龙指示器</li>
+<li><code>F9</code> 重复搜索</li>
+</ul>
+<h4 id="配置-4"><a href="#配置-4" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li><p>修改项：[B2kBinocular]</p>
+<ul>
+<li>参数说明<ul>
+<li><code>FindAllCreatures=True</code> 如果设为 False，只有可驯服的生物可以被搜素到</li>
+<li><code>ShowOnlyTamed=True</code> 默认为 False，可以搜索被驯服的和野生恐龙</li>
+<li><code>CreatureClassRequired=True</code> 默认为 False</li>
+<li><code>AdminOnly=True</code> 默认为 False，寻龙模组只能由管理员使用</li>
+<li><code>ScanRange=</code> 默认 1000000</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>我的个人设置</p>
+</li>
+</ul>
+<p>使用默认设置</p>
+<h3 id="Dino-Storage-v2"><a href="#Dino-Storage-v2" class="headerlink" title="Dino Storage v2"></a>Dino Storage v2</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>配置网址：&lt;<a target="_blank" rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=1822824970&gt;">https://steamcommunity.com/sharedfiles/filedetails/?id=1822824970&gt;</a></li>
+<li>相关网址：&lt;<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv10605711&gt;">https://www.bilibili.com/read/cv10605711&gt;</a></li>
+<li>修改项：[DinoStorage2]<ul>
+<li>参数说明<ul>
+<li><code>BabyGrowthMultiplier=0.0</code>  &gt;0将使得婴儿在存储器中生长，1.0为默认倍率</li>
+<li><code>DeathAutoTrap=True</code>  死亡自动捕获</li>
+<li><code>DATGiveToPlayer=True</code>  死亡捕获后自动给予最近的玩家</li>
+<li><code>DATGiveToTerminal=True</code>  死亡捕获后自动交给最近的终端</li>
+<li><code>RemoveMatingCooldown=True</code>  释放时取消掉交配CD</li>
+<li><code>AllowBossArenaRelease=True</code>  允许在BOSS竞技场中释放恐龙</li>
+<li><code>AllowBossCaveRelease=True</code>  允许在BOSS洞穴中释放恐龙</li>
+<li><code>AmmolessNewbornAutoTrap=True</code>  新生儿自动诱捕不需要灵魂球</li>
+<li><code>GodlyTerminal=True</code>  终端是无敌的</li>
+<li><code>UnlockTributeTerminal=True</code>  终端可以用作贡品终端</li>
+<li><code>KeepEnabledMatingStatus=True</code>  保留“启用交配”设置</li>
+<li><code>KeepIgnoreWhistleStatus=True</code>  保留“忽略哨声”设置</li>
+<li><code>KeepAllyLookingStatus=True</code> 收球时保留同伴注视设定</li>
+<li><code>PassiveCharge=1.05</code>  收球后被动充电倍率，1为默认</li>
+<li><code>PassiveFood=0.0</code>  收球后食物度恢复</li>
+<li><code>PassiveHP=1.05</code>  收球后生命回复</li>
+<li><code>PassiveStam=1.05</code>  收球后耐力回复</li>
+<li><code>PassiveWool=1.05</code>  收球后羊毛生长速率</li>
+<li><code>PassiveXP=1.05</code>  收球后经验获取倍率</li>
+<li><code>SoulGunWeight=2.0</code>  灵魂枪重量，默认为10.0</li>
+<li><code>ReleasePreventDupeID=True</code> 释放时将检查现有的具有相同ID的恐龙，提供GPS位置</li>
+<li><code>TrappingTribeLogs=True</code> 捕获时添加部落日志</li>
+<li><code>ReleaseTribeLogs=True</code> 释放时将添加部落记录</li>
+<li><code>PoopConvertSpeed=1.05</code> 便便转化为化肥的速度，1.0是现实倍率</li>
+<li><code>TerminalEggMultiplier=1.05</code> 终端内下蛋的倍率，1.0是现实倍率</li>
+<li><code>TerminalMiscPoopMultiplier=1.05</code> 终端内杂项便便的倍率，1.0是现实倍率</li>
+<li><code>PrimitiveTerminal=True</code> 灵魂终端初始为书籍模型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[DinoStorage2]</span></span><br><span class="line"><span class="attr">BabyGrowthMultiplier</span>=<span class="number">10.0</span></span><br><span class="line"><span class="attr">DeathAutoTrap</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">DATGiveToPlayer</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">RemoveMatingCooldown</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">AllowBossArenaRelease</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">AllowBossCaveRelease</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">AmmolessNewbornAutoTrap</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">GodlyTerminal</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">UnlockTributeTerminal</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">KeepEnabledMatingStatus</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">KeepIgnoreWhistleStatus</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">KeepAllyLookingStatus</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">PassiveCharge</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">PassiveFood</span>=<span class="number">5</span></span><br><span class="line"><span class="attr">PassiveHP</span>=<span class="number">5</span></span><br><span class="line"><span class="comment">; PassiveStam=10</span></span><br><span class="line"><span class="attr">PassiveWool</span>=<span class="number">5</span></span><br><span class="line"><span class="comment">; PassiveXP=5</span></span><br><span class="line"><span class="attr">SoulGunWeight</span>=<span class="number">2.0</span></span><br><span class="line"><span class="attr">ReleasePreventDupeID</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">TrappingTribeLogs</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">ReleaseTribeLogs</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">PoopConvertSpeed</span>=<span class="number">2.0</span></span><br><span class="line"><span class="attr">TerminalEggMultiplier</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">TerminalMiscPoopMultiplier</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">PrimitiveTerminal</span>=<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="BetterDinos"><a href="#BetterDinos" class="headerlink" title="BetterDinos"></a>BetterDinos</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[BetterDinos]<ul>
+<li>参数说明<ul>
+<li><code>AllowFlyerSpeed=True</code> 允许将飞行类生物转换为速度更快的版本</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[BetterDinos]</span></span><br><span class="line"><span class="attr">AllowFlyerSpeed</span>=<span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h3 id="Chair-of-the-impatient"><a href="#Chair-of-the-impatient" class="headerlink" title="Chair of the impatient"></a>Chair of the impatient</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[ChariOfTheImpatient]<ul>
+<li>参数说明<ul>
+<li><code>TimeMultiplier=10</code> 时间快进倍率</li>
+<li><code>EnableBlocking=True</code> 允许玩家阻止时间椅子</li>
+<li><code>ShowServerNotification=True</code> 允许服务器通知其他玩家</li>
+<li><code>CheckEveryoneSitsCheckTime=5</code> 服务器设置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[ChariOfTheImpatient]</span></span><br><span class="line"><span class="attr">TimeMultiplier</span>=<span class="number">20</span></span><br><span class="line"><span class="attr">EnableBlocking</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">ShowServerNotification</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">CheckEveryoneSitsCheckTime</span>=<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h3 id="Cement-Mixer"><a href="#Cement-Mixer" class="headerlink" title="Cement Mixer"></a>Cement Mixer</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[StructuresPlus]<ul>
+<li>参数说明<ul>
+<li>为了使S+能拉取该模组内的物品，需要在S+的配置里增加一项，内容如下</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[StructuresPlus]</span></span><br><span class="line"><span class="attr">PullResourceAdditions</span>=/Game/Mods/MyMod/Gravel/PrimalItemResource_Gravel_mymod.PrimalItemResource_Gravel_mymod</span><br></pre></td></tr></table></figure>
+<h3 id="Leathals-Reusables"><a href="#Leathals-Reusables" class="headerlink" title="Leathals Reusables"></a>Leathals Reusables</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[LethalsReusables]<ul>
+<li>参数说明<ul>
+<li><code>BloodExtractDino=True</code> 允许抽血器抽恐龙血</li>
+<li><code>BloodExtractHPCost=100.0</code> 单次抽血量</li>
+<li><code>BloodExtractPacks=1000</code> 单次可以抽多少包血</li>
+<li><code>GliderCooldownMultiplier=2.0</code> 设置滑翔翼重开速度</li>
+<li><code>GliderReqSpeedMultiplier=1.0</code> 设置滑翔翼滑行所需最小速度</li>
+<li><code>GliderSpeedMultiplier=2.0</code> 设置滑翔翼最大滑行速度</li>
+<li><code>GliderTurnMultiplier=1.0</code> 设置滑翔翼滑行时的转弯角度</li>
+<li><code>WeightMultiplier=1.0</code> 设置模组物品的重量参数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[LethalsReusables]</span></span><br><span class="line"><span class="attr">BloodExtractDino</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">BloodExtractHPCost</span>=<span class="number">100.0</span></span><br><span class="line"><span class="attr">BloodExtractPacks</span>=<span class="number">1000</span></span><br><span class="line"><span class="attr">GliderCooldownMultiplier</span>=<span class="number">1.0</span></span><br><span class="line"><span class="attr">GliderReqSpeedMultiplier</span>=<span class="number">1.0</span></span><br><span class="line"><span class="attr">GliderSpeedMultiplier</span>=<span class="number">2.0</span></span><br><span class="line"><span class="attr">GliderTurnMultiplier</span>=<span class="number">3.0</span></span><br><span class="line"><span class="attr">WeightMultiplier</span>=<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="Human-NPCS"><a href="#Human-NPCS" class="headerlink" title="Human NPCS"></a>Human NPCS</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[Human_NPCs]<ul>
+<li>参数说明<ul>
+<li><code>Start_Clothing=7</code> 野人的启示衣服等级<blockquote>
+<p>1：布甲，2：皮甲，3：毛皮，4：吉利，5：沙漠，6：甲壳，7：金属，8：防暴，9：防护，10：猛犸皮革。</p>
+</blockquote>
+</li>
+<li><code>TurretsAllowed=1</code> 允许野人使用X种子植物</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>修改项：[Human_NPCs_Settings]<ul>
+<li>参数说明<ul>
+<li><code>Health_x=0.0</code> 生命值</li>
+<li><code>Weight_x=5.0</code> 负重</li>
+<li><code>Stamina_x=5.0</code> 耐力</li>
+<li><code>Food_x=5.0</code> 食物</li>
+<li><code>Melee_Damage_x=5.0</code> 攻击</li>
+<li><code>Speed_x=5.0</code> 速度</li>
+<li><code>Torpidity_x=5.0</code> 眩晕</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Human_NPCs]</span></span><br><span class="line"><span class="attr">Start_Clothing</span>=<span class="number">7</span></span><br><span class="line"><span class="attr">TurretsAllowed</span>=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Human_NPCs_Settings]</span></span><br><span class="line"><span class="attr">Health_x</span>=<span class="number">5.0</span></span><br><span class="line"><span class="attr">Weight_x</span>=<span class="number">5.0</span></span><br><span class="line"><span class="attr">Stamina_x</span>=<span class="number">5.0</span></span><br><span class="line"><span class="attr">Food_x</span>=<span class="number">5.0</span></span><br><span class="line"><span class="attr">Melee_Damage_x</span>=<span class="number">5.0</span></span><br><span class="line"><span class="attr">Speed_x</span>=<span class="number">1.0</span></span><br><span class="line"><span class="attr">Torpidity_x</span>=<span class="number">5.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="The-Tombstone-Inventory-recovery-after-death"><a href="#The-Tombstone-Inventory-recovery-after-death" class="headerlink" title="The Tombstone (Inventory recovery after death)"></a>The Tombstone (Inventory recovery after death)</h3><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li>修改项：[TheTombstone]<ul>
+<li>参数说明<ul>
+<li><code>KeepInventoryOnDeath=True</code> 死亡重生后物品回到库存</li>
+<li><code>DestroyGravestoneWhenEmpty=False</code> 当墓碑为空时摧毁墓碑</li>
+<li><code>OneTombstonePerPlayer=False</code> 一个世界中只能存在一个墓碑</li>
+<li><code>AutoDestroyAfterSeconds=345600</code> 当多少时间后摧毁墓碑，设为0不摧毁</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>我的个人设置</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[TheTombstone]</span></span><br><span class="line"><span class="attr">KeepInventoryOnDeath</span>=<span class="literal">True</span></span><br><span class="line"><span class="attr">DestroyGravestoneWhenEmpty</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">OneTombstonePerPlayer</span>=<span class="literal">False</span></span><br><span class="line"><span class="attr">AutoDestroyAfterSeconds</span>=<span class="number">345600</span></span><br></pre></td></tr></table></figure>
+<h3 id="Medicines-v3"><a href="#Medicines-v3" class="headerlink" title="Medicines v3"></a>Medicines v3</h3><p>该模组提供了一些药物用于人物和恐龙的快速回复</p>
+<ul>
+<li><p>简易绷带 (Imporvised Bandage)<br>2 级解锁。在 20s 内恢复最大生命值的 5%，有 30s 的冷却时间。一次性制作两个<br>人物与恐龙都可以使用</p>
+</li>
+<li><p>医疗站 (Medical Station)<br>10 级解锁。用于制作更高级的药品</p>
+</li>
+<li><p>一级药物<br>10 级解锁。在 20s 内恢复最大生命值的 10%，有 45s 的冷却时间。一次性制作两个<br>人物用品：绷带 (Bandages)<br>恐龙用品：药膏 (Salve)</p>
+</li>
+<li><p>二级药物<br>40 级解锁。在 10s 内恢复最大生命值的 20%，有 60s 冷却时间<br>人物用品：抗生素 (Antibiotics)<br>恐龙用品：镇痛剂、涂抹药 (Liniment)</p>
+</li>
+<li><p>三级药物<br>80 级解锁。在 10s 内恢复最大生命值的 50%，有 90s 冷却时间<br>人物用品：止痛药 (Painkillers)<br>恐龙用品：血清 (Serum)</p>
+</li>
+<li><p>90cc 镇静剂飞镖 (90cc Tranquilizer Dart)<br>80 级解锁。是普通麻醉飞镖的 10 倍效果</p>
+</li>
+<li><p>代谢药 (Metabolic Reagent)<br>30 级解锁。加速新陈代谢，在 15s 内减少 200 食物度和 50% 最大眩晕值，有 20s 冷却时间</p>
+</li>
+<li><p>苯二氮平类药物 (Benzodiazepine)<br>50 级解锁。一种极强的麻醉剂。在 15s 内提升最大眩晕值的 50%，有 20s 冷却时间</p>
+</li>
+<li><p>秘药 (Formula)<br>50 级解锁。提供一种飞龙奶的替代制品，同时可以给婴儿提供 25% 的留痕度。对人类没有效果</p>
+</li>
+<li><p>Omega-3s<br>90 级解锁。提供 25k 经验值，与服务器的任何经验值倍率无关</p>
+</li>
+<li><p>合成代谢类固醇 (Anabolic Steroid)<br>60 级解锁。在 90s 内获得 50% 伤害减免和 300% 耐力回复，有 300s 冷却时间</p>
+</li>
+</ul>
+<h4 id="配置-5"><a href="#配置-5" class="headerlink" title="配置"></a>配置</h4><ul>
+<li>路径：ARK\ShooterGame\Saved\Config\WindowsNoEditor</li>
+<li>修改文件：GameUserSettings.ini</li>
+<li><p>修改项：[Medicines]</p>
+<ul>
+<li>参数说明<ul>
+<li><code>MedBenchSlot=100</code> 药物堆叠个数</li>
+<li><code>MedBenchCraftSpeed=1.0</code> 药物制作速度</li>
+<li><code>ImpBandageHeal=0.05</code> 简易绷带治疗效果（默认为 0.02% 最大生命值）</li>
+<li><code>Tier1Heal=0.1</code> 一级药物治疗效果（默认为 10%）</li>
+<li><code>Tier2Heal=0.2</code> 二级药物治疗效果（默认为 20%）</li>
+<li><code>Tier3Heal=0.5</code> 三级药物治疗效果（默认为 50%）</li>
+<li><code>MetabolicFood=200.0</code> 制作药品时需要消耗的食物数量（默认 2000%）</li>
+<li><code>MetabolicTorpor=0.50</code> 制作药品时需要消耗的麻醉药数量（默认 50%）</li>
+<li><code>ImprintBaby=True</code> 设置 Formula 药剂是否可以给婴儿增加留痕</li>
+<li><code>FormulaImprint=0.25</code> 设置 Formula 药剂增加的留痕度</li>
+<li><code>OmegaXP=25000</code> 设置 Omega-3s 药剂给的经验值数量</li>
+<li><code>SteroidDmg=0.5</code> 设置类固醇 (Anabolic Steroid) 的减伤效果</li>
+<li><code>SteroidStamina=3.0</code> 设置类固醇的耐力回复效果</li>
+<li><code>SteroidDuration=90</code> 设置类固醇的持续时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>我的个人设置</p>
+</li>
+</ul>
+<p>保持默认设置</p>
+<h3 id="ARK-Additions-The-Collection"><a href="#ARK-Additions-The-Collection" class="headerlink" title="ARK Additions: The Collection"></a>ARK Additions: The Collection</h3><p>该模组添加了一系列新的恐龙</p>
+<h4 id="Acrocanthosaurus-高脊龙"><a href="#Acrocanthosaurus-高脊龙" class="headerlink" title="Acrocanthosaurus 高脊龙"></a>Acrocanthosaurus 高脊龙</h4><p>野生高脊龙是一种食肉类恐龙，体型比霸王龙更大，对越小的目标造成的伤害越高。当他们受到伤害时会将高大的脊背露出来抵挡伤害（盾牌姿态），同时如果受到伤害过多（35% 最大生命值），他们会进入愤怒状态，这种状态下可以造成更高的伤害</p>
+<p>高脊龙对普通的麻醉方式免疫，可以尝试通过激怒高脊龙在其吼叫时直接将麻醉药品放入其口中的方式驯服</p>
+<h5 id="分布"><a href="#分布" class="headerlink" title="分布"></a>分布</h5><p>高脊龙可能出现在孤岛、焦土、中心岛、灭绝、创世纪一、仙境、瓦尔盖罗、水晶岛、迷失岛地图中</p>
+<h5 id="掉落物"><a href="#掉落物" class="headerlink" title="掉落物"></a>掉落物</h5><p>可以掉落兽皮、生肉、优质生肉以及高脊龙肾上腺</p>
+<p>高脊龙肾上腺是创造野蛮高脊龙的贡品</p>
+<h5 id="对抗"><a href="#对抗" class="headerlink" title="对抗"></a>对抗</h5><p>想要杀死高脊龙，最好使用体型相近或更大的恐龙，这样可以保证受到的伤害最小。高脊龙在正常情况下跑得比生存者更快，因此，如果有必要可以通过造成一定伤害（最大生命值的 10%）来激活其盾牌姿态降低其移动速度</p>
+<p>高脊龙在激活肾上腺素的情况下几乎可以造成两倍伤害</p>
+<p>在对抗一只野生的或者没有骑手的高脊龙时，可以在其激活盾牌姿态后停止攻击，等待它从盾牌状态退出，这样就不会再激活肾上腺素状态</p>
+<h5 id="驯服"><a href="#驯服" class="headerlink" title="驯服"></a>驯服</h5><p>高脊龙的驯服食物依次为卓越饲料、生羊肉、熟羊肉、优质生肉、优质熟肉、优质生鱼肉、优质熟鱼肉、生肉等</p>
+<p>在驯服高脊龙时，需要将麻醉剂放到物品栏最后一格，然后攻击高脊龙使其进入咆哮状态，然后按 E 将麻醉剂从其口中送入，直到高脊龙倒地</p>
+<p>可以尝试使用飞龙来驯服高脊龙，在困住高脊龙后，使用飞龙（推荐冰龙）来对高脊龙造成伤害并使其吼叫。火焰飞龙、闪电飞龙、毒龙不太推荐，因为可能影响驯养有效性</p>
+<h5 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h5><ul>
+<li>左键普通撕咬，当激活肾上腺素时攻速变快</li>
+<li>右键激活盾牌姿态，在这种姿态下受到最大生命值的 10% 伤害可以进入肾上腺激活状态。在盾牌姿态下使用左键可以使用盾牌撞击，可以对金属建筑造成伤害</li>
+<li>C 键进行践踏攻击，攻击伤害取决于被攻击对象与高脊龙的体重对比，在肾上腺状态下可以践踏 3 次</li>
+<li>Ctrl 键吼叫</li>
+</ul>
+<h5 id="扮演角色"><a href="#扮演角色" class="headerlink" title="扮演角色"></a>扮演角色</h5><ul>
+<li>坦克。高脊龙可以担当坦克角色，当激活盾牌状态时，受到伤害会积累肾上腺素值，一旦激活肾上腺状态，将会获得一个 35s 的 Buff：美妙 0.2% 生命值恢复，并且增加近战伤害，抗性和移动速度</li>
+<li>顶级掠食者。高脊龙在面对体型较小的恐龙时有压倒性优势，但面对同级别及更高级的恐龙，如霸王龙和南巨时会有些吃力，推荐加点生命和攻击</li>
+<li>吸收子弹。激活盾牌姿态吸收子弹</li>
+<li>Boss 战斗。高脊龙可以被带入 Boss 竞技场参与击杀 Boss</li>
+<li>石头人猎杀者。高脊龙的盾牌攻击不会被石头人减伤</li>
+</ul>
+<h5 id="Summon-Savage-Acro-野蛮高脊龙-Boss"><a href="#Summon-Savage-Acro-野蛮高脊龙-Boss" class="headerlink" title="Summon Savage Acro 野蛮高脊龙 Boss"></a>Summon Savage Acro 野蛮高脊龙 Boss</h5><p>使用高脊龙肾上腺腺体等材料制作野蛮高脊龙 Boss 的召唤物品。如果召唤就没有回头路，因此建议在空旷的场地召唤野蛮高脊龙。他的强度与君王泰坦相当。</p>
+<h4 id="Brachiosaurus-腕龙"><a href="#Brachiosaurus-腕龙" class="headerlink" title="Brachiosaurus 腕龙"></a>Brachiosaurus 腕龙</h4><p>腕龙是一种温顺的食草性恐龙，当受到伤害时，他们会采用后脚站地的方式来保护自己，同时会将全身的重量用于践踏攻击。驯服后的腕龙可以采集木头、茅草、石头、金属等物品</p>
+<h5 id="分布-1"><a href="#分布-1" class="headerlink" title="分布"></a>分布</h5><p>孤岛、中心岛、仙境、畸变、瓦尔盖罗、创世纪一和水晶岛</p>
+<h5 id="掉落物-1"><a href="#掉落物-1" class="headerlink" title="掉落物"></a>掉落物</h5><p>兽皮、生肉、优质生肉</p>
+<h5 id="对抗-1"><a href="#对抗-1" class="headerlink" title="对抗"></a>对抗</h5><p>应当使用灵活的恐龙或飞龙来对付腕龙。也可以使用步枪风筝腕龙，或使用模组生物高脊龙激活肾上腺状态来击杀腕龙</p>
+<p>腕龙的吼叫可能导致任何生物的恐惧逃跑，因此在面对敌对腕龙时要特别注意它的吼叫</p>
+<p>使用流血效果的武器或恐龙可以更好的击杀腕龙</p>
+<h5 id="驯服-1"><a href="#驯服-1" class="headerlink" title="驯服"></a>驯服</h5><p>腕龙的驯服食物依次为卓越饲料、蔬菜、紫色浆果以及其他浆果。腕龙的眩晕值恢复的很快，因此请确保有足够的麻醉药使其保持眩晕状态</p>
+<p>腕龙无法被正常的方式麻醉，需要在其抬高前腿时攻击后腿前部，当受到足够伤害时，腕龙就会眩晕。建议使用远程武器风筝</p>
+<h5 id="控制-1"><a href="#控制-1" class="headerlink" title="控制"></a>控制</h5><ul>
+<li>左键使用一条前腿进行践踏</li>
+<li>右键使用一条后腿进行践踏</li>
+<li>C 键触发双腿站立，这时使用左键进行双腿践踏</li>
+<li>Ctrl 键发出吼叫，可以恐惧大部分生物</li>
+<li>R 键循环采集效率，可以更改不同物资的采集效率</li>
+</ul>
+<h5 id="扮演角色-1"><a href="#扮演角色-1" class="headerlink" title="扮演角色"></a>扮演角色</h5><ul>
+<li>采集者。腕龙可以采集木头、石头、金属、浆果、茅草等物资。对木头、石头、金属有 50% 减重效果</li>
+<li>攻城武器。腕龙可以对所有类型的建筑造成大量伤害</li>
+<li>毁灭者。腕龙的双脚践踏有很高的伤害，但是有 30s 的冷却时间，因此要在合适的时机释放</li>
+<li>恐吓者。腕龙的吼叫可以让大部分生物逃跑</li>
+<li>造粪机器。腕龙可以产生大量粪便</li>
+<li>驯服助手。腕龙可以吼叫使得其他恐龙恐惧，被恐惧的恐龙将降低抗性，更容易被击晕。另外如果野生恐龙在被恐惧的情况下被击晕驯服，那么它起身时就会攻击让它恐惧的腕龙，通过收回冷冻仓再放出来可以解决这个问题</li>
+<li>嘲讽者。有些生物在听到腕龙的吼叫后不会逃跑反而会攻击腕龙。同时也有一些生物完全不受腕龙吼叫影响</li>
+</ul>
+<p>附：听到腕龙吼叫会攻击的生物</p>
+<ul>
+<li>高脊龙</li>
+<li>虫群</li>
+<li>袋狮</li>
+<li>血蛛</li>
+<li>无名怪</li>
+<li>泰坦巨蟒</li>
+<li>死亡蠕虫</li>
+<li>死神</li>
+<li>雄性冰虫（仙境生物）</li>
+<li>石头人</li>
+</ul>
+<h4 id="Ceratosaurus-角鼻龙"><a href="#Ceratosaurus-角鼻龙" class="headerlink" title="Ceratosaurus 角鼻龙"></a>Ceratosaurus 角鼻龙</h4><p>应当是一个专业的流血治疗师角色，但是具体信息未知，因为该恐龙还未正式发布</p>
+<h4 id="Concavenator-驼背龙"><a href="#Concavenator-驼背龙" class="headerlink" title="Concavenator 驼背龙"></a>Concavenator 驼背龙</h4><p>驼背龙通常出现在沙地里，2-3 只一组，潜游在沙土之中。驼背龙有一个背包加成，这使得他们可以扬沙使得敌人窒息。驼背龙通常是一击就跑的典型</p>
+<h5 id="分布-2"><a href="#分布-2" class="headerlink" title="分布"></a>分布</h5><p>焦土、仙境、畸变、灭绝、创世纪一、水晶岛</p>
+<h5 id="掉落物-2"><a href="#掉落物-2" class="headerlink" title="掉落物"></a>掉落物</h5><p>兽皮、角质、生肉、优质生肉</p>
+<h5 id="对抗-2"><a href="#对抗-2" class="headerlink" title="对抗"></a>对抗</h5><p>当遇到幸存者时，驼背龙会快速潜入地下不断攻击幸存者，直到他们被炸药逼出地底</p>
+<p>推荐使用远程武器对抗驼背龙</p>
+<p>没有氧气条的恐龙不受扬尘的影响，带有潜水装备或防毒面具的幸存者也不受扬尘影响，否则可能会被窒息（恐龙则是其他属性下降）</p>
+<h5 id="驯服-2"><a href="#驯服-2" class="headerlink" title="驯服"></a>驯服</h5><p>驼背龙的驯服食物为上等饲料、生羊肉、熟羊肉、优质生肉等</p>
+<p>要驯服驼背龙，首先需要使用 C4 将他们炸出地面，然后使用正常方式麻醉他们。虽然驼背龙可以被正常方式麻醉，但是推荐使用炸药的方式使其眩晕，因为他们脱离地底的时间很短，同时他们的眩晕值下降很快，使用麻醉镖等方式可能在眩晕前就将它们击杀。可以使用一堆炸药然后引爆的方式增加大量眩晕值，然后在快眩晕时只引爆一个炸药避免有效性降低</p>
+<p>推荐在驯服时骑乘一个移速较快的恐龙，如似鸡龙或剑齿虎</p>
+<p>也可以尝试使用冰龙来驯服</p>
+<h5 id="控制-2"><a href="#控制-2" class="headerlink" title="控制"></a>控制</h5><ul>
+<li>左键使用嘴咬</li>
+<li>右键切换姿态，进入潜泳模式</li>
+<li>C 键扬沙</li>
+<li>空格键在潜泳状态下跳跃</li>
+</ul>
+<h5 id="扮演角色-2"><a href="#扮演角色-2" class="headerlink" title="扮演角色"></a>扮演角色</h5><ul>
+<li>地底旅行者。可以骑乘他们在沙地快速移动</li>
+<li>群体控制。扬沙可以造成范围伤害与控制</li>
+</ul>
+<h4 id="Cryolophosaurus-冰脊龙"><a href="#Cryolophosaurus-冰脊龙" class="headerlink" title="Cryolophosaurus 冰脊龙"></a>Cryolophosaurus 冰脊龙</h4><p>冰脊龙体型娇小，他们的喉咙里有一种冷冻剂，通过吸收水或雪可以填充。冰脊龙可以将冷冻剂吐出来形成一团有麻痹效果的气体，也可以把它呼出来形成一股寒冷的气流。如果它成功冻结一个个体，冰脊龙将进入一个兴奋状态，提高攻速、伤害和抗性。冰脊龙对于传统的驯服方式免疫，但是当他们呼出气体时他们的喉咙十分脆弱，这时可以向他们嘴里射击来使得他们冻结自己，从而被喂食</p>
+<h5 id="分布-3"><a href="#分布-3" class="headerlink" title="分布"></a>分布</h5><p>孤岛、中心岛、仙境、瓦尔盖罗、水晶岛</p>
+<h5 id="掉落物-3"><a href="#掉落物-3" class="headerlink" title="掉落物"></a>掉落物</h5><p>兽皮、生肉</p>
+<h5 id="对抗-3"><a href="#对抗-3" class="headerlink" title="对抗"></a>对抗</h5><p>利用捕兽夹来阻止其移动，然后使用武器攻击。注意使用远程武器，并且需要规避他们的冰冻吐息和麻痹吐息</p>
+<p>因为冰脊龙的生命值并不高，所以可以使用高等级高生物权限的恐龙直接击杀冰脊龙</p>
+<h5 id="驯服-3"><a href="#驯服-3" class="headerlink" title="驯服"></a>驯服</h5><p>冰脊龙驯服食物为卓越饲料、生羊肉等</p>
+<p>为了驯服冰脊龙，你需要在它喷射冰霜吐息时向他的头部射击，这会导致其低温吐息将自身冻住，然后就可以被喂养食物</p>
+<h5 id="控制-3"><a href="#控制-3" class="headerlink" title="控制"></a>控制</h5><ul>
+<li>左键普通攻击。当进入瞄准状态时，按下左键将喷射冰冻吐息</li>
+<li>右键可以让冰脊龙通过水或雪填充冷冻液</li>
+<li>C 键发射麻痹吐息</li>
+<li>Ctrl 改变攻击姿态，切换为瞄准模式</li>
+</ul>
+<h5 id="扮演角色-3"><a href="#扮演角色-3" class="headerlink" title="扮演角色"></a>扮演角色</h5><ul>
+<li>铠甲匠。当冰脊龙被驯服后，可以通过冰冻吐息来为友军增加一层 70% 减伤的冰霜护甲，但是会极大地降低他们的移动速度</li>
+<li>驯服助手。他们的冷冻吐息和麻醉吐息可以很方便的帮助驯服其他恐龙。冰脊龙的冷冻液值取决于氧气值，麻醉效果取决于攻击力</li>
+</ul>
+<h4 id="Helicoprion-旋齿鲨"><a href="#Helicoprion-旋齿鲨" class="headerlink" title="Helicoprion 旋齿鲨"></a>Helicoprion 旋齿鲨</h4><p>等待信息更新</p>
+<h4 id="Xiphactinus-剑射鱼"><a href="#Xiphactinus-剑射鱼" class="headerlink" title="Xiphactinus 剑射鱼"></a>Xiphactinus 剑射鱼</h4><p>等待信息更新</p>
+<h3 id="ARK-Additions-Domination-Rex"><a href="#ARK-Additions-Domination-Rex" class="headerlink" title="ARK Additions: Domination Rex"></a>ARK Additions: Domination Rex</h3><p>该模组增加了一个新的恐龙：暴虐霸王龙，灵感来自于侏罗纪世界</p>
+<h3 id="其他模组"><a href="#其他模组" class="headerlink" title="其他模组"></a>其他模组</h3><p>使用默认配置</p>
+<h2 id="画面设置"><a href="#画面设置" class="headerlink" title="画面设置"></a>画面设置</h2><ul>
+<li>分辨率：2560*1440</li>
+<li>显示模式：全屏</li>
+<li>分辨率缩放比例：100%</li>
+<li>世界平铺缓冲区：极高</li>
+<li>视野距离：极高</li>
+<li>抗锯齿：低</li>
+<li>后期处理：极高</li>
+<li>阴影效果：高</li>
+<li>地形阴影：高</li>
+<li>纹理：高</li>
+<li>天空品质：50%</li>
+<li>地面杂物密度：0%</li>
+<li>地面杂物距离：0%</li>
+<li>网格层次细节：100%</li>
+<li>[ ] 高品质各向异性过滤</li>
+<li>[ ] 动态模糊</li>
+<li>[ ] 噪点</li>
+<li>[ ] 距离场环境遮挡</li>
+<li>[x] 屏幕空间环境光吸收</li>
+<li>[x] 允许增强的最大视距模式</li>
+<li>[x] 距离场阴影</li>
+<li>[x] 高质量材料</li>
+<li>[x] 字表面散射</li>
+<li>[x] 高质量VFX</li>
+<li>[x] 简化远处角色的动画效果</li>
+<li>[x] 高质量LOD</li>
+<li>[ ] 额外关卡串流距离</li>
+<li>[x] 颜色分级</li>
+<li>[ ] 光晕效果</li>
+<li>[x] 光线效果</li>
+<li>[ ] 低质量关卡串流</li>
+<li>整体界面缩放比例：100%</li>
+<li>物品栏界面缩放比例：20%</li>
+<li>镜头抖动幅度：10%</li>
+<li>镜头视野：最大</li>
+<li>水平灵敏度：默认</li>
+<li>垂直灵敏度：默认</li>
+<li>[ ] 反转Y轴</li>
+<li>[ ] 第三人称镜头偏移</li>
+<li>[ ] 禁用第三人称视角过渡效果</li>
+<li>[x] NPC字幕</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%B9%E8%88%9F%E7%94%9F%E5%AD%98%E8%BF%9B%E5%8C%96/" rel="tag"># 方舟生存进化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/02/Python3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" rel="prev" title="Python3 学习笔记-1">
+                  <i class="fa fa-chevron-left"></i> Python3 学习笔记-1
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/02/12/%E4%BA%BA%E7%89%A9%E3%80%81%E6%81%90%E9%BE%99%E5%8A%A0%E7%82%B9%E4%B8%8A%E9%99%90%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81/" rel="next" title="人物、恐龙加点上限修改代码">
+                  人物、恐龙加点上限修改代码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">花祭</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

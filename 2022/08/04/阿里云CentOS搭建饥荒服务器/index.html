@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css/css?family=LXGW+WenKai:300,300italic,400,400italic,700,700italic%7CMonaco:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="配置信息操作系统：CentOS 8.5饥荒版本：v518018">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云CentOS搭建饥荒服务器">
+<meta property="og:url" content="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="花祭的博客">
+<meta property="og:description" content="配置信息操作系统：CentOS 8.5饥荒版本：v518018">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/Klei_1.jpg">
+<meta property="og:image" content="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/Klei_2.jpg">
+<meta property="article:published_time" content="2022-08-04T11:09:06.000Z">
+<meta property="article:modified_time" content="2023-04-01T13:14:33.672Z">
+<meta property="article:author" content="花祭">
+<meta property="article:tag" content="饥荒">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/Klei_1.jpg">
+
+
+<link rel="canonical" href="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/","path":"2022/08/04/阿里云CentOS搭建饥荒服务器/","title":"阿里云CentOS搭建饥荒服务器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>阿里云CentOS搭建饥荒服务器 | 花祭的博客</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">花祭的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">配置信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">服务器搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.2.</span> <span class="nav-text">搭建步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%96%E7%95%8C%E8%AE%BE%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">服务器世界设定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%B8%96%E7%95%8C"><span class="nav-number">3.1.</span> <span class="nav-text">主世界</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B4%9E%E7%A9%B4"><span class="nav-number">3.2.</span> <span class="nav-text">洞穴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E7%BB%84"><span class="nav-number">4.</span> <span class="nav-text">模组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-mod"><span class="nav-number">5.</span> <span class="nav-text">客户端 mod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E5%90%AF%E7%94%A8"><span class="nav-number">5.1.</span> <span class="nav-text">已启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%90%AF%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">未启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mod-%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">Mod 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ActionQueue-RB2-RWYS-supported"><span class="nav-number">5.3.1.</span> <span class="nav-text">ActionQueue RB2 (RWYS supported)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MiniMap-HUD"><span class="nav-number">5.3.2.</span> <span class="nav-text">MiniMap HUD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E9%98%9F%E8%AE%BA%E5%8A%A0%E5%BC%BA"><span class="nav-number">5.3.3.</span> <span class="nav-text">排队论加强</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8-Mod"><span class="nav-number">6.</span> <span class="nav-text">服务器 Mod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%B2%E5%90%AF%E7%94%A8-1"><span class="nav-number">6.1.</span> <span class="nav-text">已启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AA%E5%90%AF%E7%94%A8-1"><span class="nav-number">6.2.</span> <span class="nav-text">未启用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mod-%E9%85%8D%E7%BD%AE-1"><span class="nav-number">6.3.</span> <span class="nav-text">Mod 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DST-Storeroom"><span class="nav-number">6.3.1.</span> <span class="nav-text">[DST] Storeroom</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="花祭"
+      src="/images/my_avatar.JPG">
+  <p class="site-author-name" itemprop="name">花祭</p>
+  <div class="site-description" itemprop="description">一个简单的小博客</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HuaJiYa520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HuaJiYa520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Hua.JiYa@outlook.com" title="E-Mail → mailto:Hua.JiYa@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/HuaJiYa520" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my_avatar.JPG">
+      <meta itemprop="name" content="花祭">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="花祭的博客">
+      <meta itemprop="description" content="一个简单的小博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="阿里云CentOS搭建饥荒服务器 | 花祭的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          阿里云CentOS搭建饥荒服务器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-04 19:09:06" itemprop="dateCreated datePublished" datetime="2022-08-04T19:09:06+08:00">2022-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-01 21:14:33" itemprop="dateModified" datetime="2023-04-01T21:14:33+08:00">2023-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Games/" itemprop="url" rel="index"><span itemprop="name">Games</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="配置信息"><a href="#配置信息" class="headerlink" title="配置信息"></a>配置信息</h2><p>操作系统：CentOS 8.5<br>饥荒版本：v518018</p>
+<span id="more"></span>
+<h2 id="服务器搭建"><a href="#服务器搭建" class="headerlink" title="服务器搭建"></a>服务器搭建</h2><h3 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h3><ul>
+<li><code>[local]</code> 符号表示任意用户均可执行该条命令</li>
+<li><code>[root]</code> 符号表示需要使用 root 用户执行命令，如果是一般用户，执行命令时需要使用 <code>sudo</code> 前缀</li>
+<li><code>(output)</code> 表示命令输出结果</li>
+</ul>
+<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><ol>
+<li><p>可以考虑创建一个专门的 dst(Don’t Starve Together) 的用户,也可以直接使用 root 用户</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如需创建 dst 用户，执行以下命令</span></span><br><span class="line">[root] useradd -m dst</span><br><span class="line">[root] cd /home/dst</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装相关依赖</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] yum -y install glibc.i686 libstdc++.i686 screen libcurl.i686 lrzsz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装 steamCMD, 并下载饥荒的服务器文件</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">pwd</span> 查看当前所在路径，如果使用 root 用户，需要确保路径为 /root，如果使用 dst 用户，需要确保路径为 /home/dst</span></span><br><span class="line">[root] pwd</span><br><span class="line">(output) /root</span><br><span class="line"></span><br><span class="line">[root] mkdir steamcmd</span><br><span class="line">[root] cd steamcmd</span><br><span class="line">[root] wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz</span><br><span class="line">[root] tar -xvzf steamcmd_linux.tar.gz</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这一步打开 steamcmd，进入 steamcmd 命令行界面</span></span><br><span class="line">[root] ./steamcmd.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以下命令在 steamcmd 中执行</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">该命令指定 dst 安装目录</span></span><br><span class="line"><span class="meta prompt_">Steam&gt; </span><span class="language-bash">force_install_dir ~/dst</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">匿名登录</span></span><br><span class="line"><span class="meta prompt_">Steam&gt; </span><span class="language-bash">login anonymous</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载 dst，343050 是指饥荒</span></span><br><span class="line"><span class="meta prompt_">Steam&gt; </span><span class="language-bash">app_update 343050</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载完成后使用该命令验证</span></span><br><span class="line"><span class="meta prompt_">Steam&gt; </span><span class="language-bash">validate</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出</span></span><br><span class="line"><span class="meta prompt_">Steam&gt; </span><span class="language-bash">quit</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查是否缺乏相关依赖</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root] cd ~/dst/bin</span><br><span class="line">[root] ldd dontstarve_dedicated_server_nullrenderer</span><br><span class="line">[root] ./dontstarve_dedicated_server_nullrenderer</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有报错，可参考以下内容</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/libstdc++.so.6: version &#x27;GLIBCXX_3.4.15&#x27; not found</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一般是因为安装的C运行库版本过低导致的，比如说CentOS从YUM源中安装的仅支持GLIBCXX到3.4.13</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">所幸SteamCMD中也需要该动态链接库，并且自带了该动态链接库，只需要拷贝至DST文件夹中即可</span></span><br><span class="line">[root] cp ~/steamcmd/linux32/libstdc++.so.6 ~/dst/bin/lib32/</span><br><span class="line"></span><br><span class="line">/lib/libc.so.6: version &#x27;GLIBC_2.15&#x27; not found</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">一般是因为安装的glibc版本过低导致的，比如说CentOS从YUM源中安装的仅有2.12版本</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从Klei官方提供的链接下载与glibc相关的3个文件，Debian系也是这样解决</span></span><br><span class="line">[root] cd ~/dst/bin/lib32/</span><br><span class="line">[root] wget https://github.com/dgibbs64/linuxgameservers/raw/master/Insurgency/dependencies/libc.so.6</span><br><span class="line">[root] wget https://github.com/dgibbs64/linuxgameservers/raw/master/Insurgency/dependencies/libpthread.so.0</span><br><span class="line">[root] wget https://github.com/dgibbs64/linuxgameservers/raw/master/Insurgency/dependencies/librt.so.1</span><br><span class="line"></span><br><span class="line">error while loading shared libraries: libcurl-gnutls.so.4: cannot open shared object file: No such file or directory</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这是因为系统没有搜索到该文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用<span class="built_in">cp</span>方法运行时会出现./lib32/libcurl-gnutls.so.4: no version information available警告，无视之~</span></span><br><span class="line">[root] sudo apt-get install libcurl4-gnutls-dev:i386 #Debian系</span><br><span class="line">[root] cp /usr/lib/libcurl.so.4 ~/dst/bin/lib32/libcurl-gnutls.so.4 #RedHat系，Debian系未测试该方法是否可行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>试运行服务器</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root] cd /dst/bin</span><br><span class="line">[root] echo ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Master &gt; dst_overworld.sh</span><br><span class="line">[root] echo ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Caves &gt; dst_caves.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行该命令后等待出现如下内容后，使用 Ctrl + C 终止</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">[200] Account Failed (6): <span class="string">&quot;E_INVALID_TOKEN&quot;</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!!!! Your Server Will Not Start !!!!</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span></span><br><span class="line"></span><br><span class="line">[root] sh dst_overworld.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行该命令后等待出现 Your Server Will Not Start 后，使用 Ctrl + C 终止</span></span><br><span class="line">[root] sh dst_caves.sh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除之前创建的默认文件</span></span><br><span class="line">[root] rm -rf ~/.klei/DoNotStarveTogether/Cluster_*</span><br></pre></td></tr></table></figure>
+<p>这一步会在 <em>~/.klei/DoNotStarveTogether/</em> 下生成一个 <em>MyDediServer</em> 文件夹，其中 <em>Master</em> 指地上，<em>Caves</em> 指洞穴</p>
+</li>
+<li><p>可删除 <em>MyDediServer</em> 文件夹 <code>rm -f ~/.klei/DoNotStarveTogether/MyDediServer</code>，因为该文件夹后续将会被替换</p>
+</li>
+<li>配置 token<ol>
+<li>打开游戏客户端，找到 <strong>Account</strong> 按钮，点击进入用户界面</li>
+<li>在上方的菜单栏中选择 <strong>游戏</strong>，再选择 <strong>《饥荒：联机版》的游戏服务器</strong> <img src="/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/Klei_1.jpg" class="" title="Klei_1"></li>
+<li>如果没有建过服务器，则选择 <strong>添加新服务器</strong></li>
+<li>选择配置服务器 <img src="/2022/08/04/%E9%98%BF%E9%87%8C%E4%BA%91CentOS%E6%90%AD%E5%BB%BA%E9%A5%A5%E8%8D%92%E6%9C%8D%E5%8A%A1%E5%99%A8/Klei_2.jpg" class="" title="Klei_2"></li>
+<li>配置服务器为想要的设置，然后下载设置</li>
+<li>下载后的文件为 <em>MyDediServer</em>，其中包含文件 <em>Master</em>, <em>Caves</em>, <em>cluster.ini</em>, <em>cluster_token.ini</em></li>
+</ol>
+</li>
+<li>在本地新建一个存档，配置好想要的世界设置以及模组。加载好服务器到选人界面退出即可</li>
+<li>退出后在 Steam 库存中右键饥荒，打开它的本地文件，找到刚刚创建的服务器存档，如果是第一个档，名字就是 <em>Cluster_1</em>，如果是第二个就是 <em>Cluster_2</em>，以此类推。也可以直接在游戏中选择对应存档，点击右上角扳手图标，选择“打开本地文件”</li>
+<li>将 <em>Cluster_1</em> 中 <em>Master</em> 和 <em>Caves</em> 中的除 <em>server.ini</em> 外的文件复制到刚刚下载的 <em>MyDediServer</em> 对应的文件夹中</li>
+<li>将 <em>MyDediServer</em> 复制到 <em>DoNotStarveTogether</em> 目录下<ol>
+<li>在当前文件夹打开 cmd 或 git bash 使用 <code>scp -r MyDediServer root@xxx:~/.klei/DoNotStarveTogether/</code> 命令上传</li>
+<li>或使用 ftp 工具上传</li>
+</ol>
+</li>
+<li><p>如果有配置 mod，则需要修改 <em>~/dst/mods/dedicated_server_mods_setup.lua</em> 文件，将需要加载的 mod id 添加进该文件。可以通过 <em>MyDediServer/Master/modoverrides.lua</em> 文件中的 <code>[&quot;workshop-XXXXXXXXX&quot;]</code> 中得到 mod id 或直接去创意工坊查看对应 mod id</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerModSetup(<span class="string">&quot;mod_id&quot;</span>) <span class="comment">--mod_id 为需要加载的 mod 的 id，有多少 mod 就需要加多少行</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动服务器</p>
+<ol>
+<li><p>方式一：使用一个脚本同时启动地上与洞穴。在 <em>/root</em> 下新建脚本 <em>startup.sh</em></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意这些路径，根据实际情况修改</span></span><br><span class="line">steamcmd_dir=&quot;$HOME/steamcmd&quot;</span><br><span class="line">install_dir=&quot;$HOME/dst&quot;</span><br><span class="line">cluster_name=&quot;MyDediServer&quot;</span><br><span class="line">dontstarve_dir=&quot;$HOME/.klei/DoNotStarveTogether&quot;</span><br><span class="line"></span><br><span class="line">function fail()</span><br><span class="line">&#123;</span><br><span class="line">        echo Error: &quot;$@&quot; &gt;&amp;2</span><br><span class="line">        exit 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function check_for_file()</span><br><span class="line">&#123;</span><br><span class="line">    if [ ! -e &quot;$1&quot; ]; then</span><br><span class="line">            fail &quot;Missing file: $1&quot;</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cd &quot;$steamcmd_dir&quot; || fail &quot;Missing $steamcmd_dir directory!&quot;</span><br><span class="line"></span><br><span class="line">check_for_file &quot;steamcmd.sh&quot;</span><br><span class="line">check_for_file &quot;$dontstarve_dir/$cluster_name/cluster.ini&quot;</span><br><span class="line">check_for_file &quot;$dontstarve_dir/$cluster_name/cluster_token.txt&quot;</span><br><span class="line">check_for_file &quot;$dontstarve_dir/$cluster_name/Master/server.ini&quot;</span><br><span class="line">check_for_file &quot;$dontstarve_dir/$cluster_name/Caves/server.ini&quot;</span><br><span class="line">check_for_file &quot;$install_dir/bin&quot;</span><br><span class="line"></span><br><span class="line">cd &quot;$install_dir/bin&quot; || fail</span><br><span class="line"></span><br><span class="line">run_shared=(./dontstarve_dedicated_server_nullrenderer)</span><br><span class="line">run_shared+=(-console)</span><br><span class="line">run_shared+=(-cluster &quot;$cluster_name&quot;)</span><br><span class="line">run_shared+=(-monitor_parent_process $$)</span><br><span class="line">run_shared+=(-shard)</span><br><span class="line"></span><br><span class="line">&quot;$&#123;run_shared[@]&#125;&quot; Caves | sed &#x27;s/^/Caves: /&#x27; &amp;</span><br><span class="line">&quot;$&#123;run_shared[@]&#125;&quot; Master | sed &#x27;s/^/Master: /&#x27;</span><br></pre></td></tr></table></figure>
+<p>赋予脚本执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root] chmod 777 ~/startup.sh</span><br></pre></td></tr></table></figure>
+<p>开启一个虚拟窗口并运行脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root] screen -S dst</span><br><span class="line">[screen] source startup.sh</span><br></pre></td></tr></table></figure>
+<p>成功启动后按下 Ctrl+A, D 最小化虚拟窗口，使其在后台运行</p>
+</li>
+<li><p>方式二：分别运行地上与地下的启动脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">screen -S ground</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ctrl + A，然后按 D 退出窗口</span></span><br><span class="line">screen -S cave</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ctrl + A，然后按 D 退出窗口</span></span><br><span class="line">screen -r ground</span><br><span class="line">source dst_overworld.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ctrl + A，然后按 D 退出窗口</span></span><br><span class="line">screen -r cave</span><br><span class="line">source dst_caves.sh</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ctrl + A，然后按 D 退出窗口</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="服务器世界设定"><a href="#服务器世界设定" class="headerlink" title="服务器世界设定"></a>服务器世界设定</h2><h3 id="主世界"><a href="#主世界" class="headerlink" title="主世界"></a>主世界</h3><ul>
+<li><p>世界选项</p>
+<ul>
+<li>冒险家<ul>
+<li>额外起始资源：总是</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>世界生成</p>
+<ul>
+<li>巨石：较多</li>
+<li>燧石：较多</li>
+</ul>
+</li>
+</ul>
+<h3 id="洞穴"><a href="#洞穴" class="headerlink" title="洞穴"></a>洞穴</h3><p>保持默认</p>
+<h2 id="模组"><a href="#模组" class="headerlink" title="模组"></a>模组</h2><p>可以打开 <strong>选项——高级——自动订阅模组</strong></p>
+<h2 id="客户端-mod"><a href="#客户端-mod" class="headerlink" title="客户端 mod"></a>客户端 mod</h2><p>客户端 Mod 不影响进入服务器，可根据需要选择下载。已下为我的 Mod 配置</p>
+<h3 id="已启用"><a href="#已启用" class="headerlink" title="已启用"></a>已启用</h3><ul>
+<li>ActionQueue RB2 (RWYS supported), id=2325441848。动作队列 Mod</li>
+<li>排队论加强, id=2753482847。在 ActionQueue 的基础上增加一些功能</li>
+<li>Combined Status, id=376333686。增强的人物状态显示</li>
+<li>Craft Pot [DS, ROG, SW, DST], id=727774324。在烹饪时显示配方等信息</li>
+<li>[DST] Nightmare HUD, id=1992293314。暗黑系 UI 风格</li>
+<li>Geometric Placement, id=351325790。几何种地必备</li>
+<li>Minimap HUD, id=345692228。增加一个小地图</li>
+<li>Show Nicknames 显示昵称（客户端）, id=956206484。在人物头上显示他们的昵称</li>
+<li>Wormhole Icons (Fixed Again), id=2831613121。添加虫洞标记</li>
+<li>Celestial HUD, id=2571443104。天空色 UI</li>
+</ul>
+<h3 id="未启用"><a href="#未启用" class="headerlink" title="未启用"></a>未启用</h3><ul>
+<li>[DST]HD Item Icon 高清图标 - Shang, id=2260439333。物品图标的高清化，但是新版还没有更新</li>
+</ul>
+<h3 id="Mod-配置"><a href="#Mod-配置" class="headerlink" title="Mod 配置"></a>Mod 配置</h3><p>针对每个 Mod 的个性化配置，仅供参考</p>
+<h4 id="ActionQueue-RB2-RWYS-supported"><a href="#ActionQueue-RB2-RWYS-supported" class="headerlink" title="ActionQueue RB2 (RWYS supported)"></a>ActionQueue RB2 (RWYS supported)</h4><p>更改以下配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启用自动收集</span></span><br><span class="line">Enable auto-collect by default: True</span><br><span class="line"><span class="comment"># 最近的建筑蓝图快捷键</span></span><br><span class="line">Craft last recipe key: G</span><br></pre></td></tr></table></figure>
+<h4 id="MiniMap-HUD"><a href="#MiniMap-HUD" class="headerlink" title="MiniMap HUD"></a>MiniMap HUD</h4><p>更改以下配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Minimap Size: Large</span><br><span class="line"></span><br><span class="line">Position: Top Left</span><br></pre></td></tr></table></figure>
+<h4 id="排队论加强"><a href="#排队论加强" class="headerlink" title="排队论加强"></a>排队论加强</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">工具位置：身上所有地方</span><br><span class="line">收集物品：原版全收集</span><br><span class="line">自动制造工具：制作</span><br><span class="line">提灯砍树：开</span><br></pre></td></tr></table></figure>
+<h2 id="服务器-Mod"><a href="#服务器-Mod" class="headerlink" title="服务器 Mod"></a>服务器 Mod</h2><p>如果要进入有 Mod 的服务器，则必须安装对应的 Mod 才可以</p>
+<p>以下是我的服务器 Mod 配置</p>
+<h3 id="已启用-1"><a href="#已启用-1" class="headerlink" title="已启用"></a>已启用</h3><ul>
+<li>45 Inventory Slots with Equip Inventory (fixed the WX lightning bug), id=2802552738。增加 45 格背包空间</li>
+<li>Extra Equip Slot Plus +, id=2823530744。增加装备格子</li>
+<li>Don’t Drop Everything, id=661253977。死亡不掉落物品</li>
+<li>Fast Travel (GUI), id=1530801499。使用小木牌传送</li>
+<li>Global Positions, id=378160973。可以在地图上打标记</li>
+<li>Show Me(中文), id=2287303119。丰富物品信息，可与 Health Info 共用</li>
+<li>Health Info, id=375859599。显示人和怪物的血量</li>
+<li>No More Respawn Penalty, id=356420397。人物重生后不会是半血状态</li>
+<li>Quick Pick, id=501385076。快速采集</li>
+<li>可靠的温迪, id=1253178451。增强温蒂</li>
+<li>[DST] Storeroom, id=623749604。一个大的储物箱</li>
+</ul>
+<h3 id="未启用-1"><a href="#未启用-1" class="headerlink" title="未启用"></a>未启用</h3><ul>
+<li>分享统计资料, id=2187805379。该 Mod 可以使全服务器的所有人共用一个状态，一个血量等</li>
+<li>OP Weapon Pack, id=2139920478。一些武器包</li>
+<li>Myth Words Theme-神话书说主题, id=1991746508。神话书说主题</li>
+<li>Myth Words Characters 神话书说角色, id=1699194522。添加了一些角色</li>
+</ul>
+<h3 id="Mod-配置-1"><a href="#Mod-配置-1" class="headerlink" title="Mod 配置"></a>Mod 配置</h3><p>服务器 Mod 配置由服主完成</p>
+<h4 id="DST-Storeroom"><a href="#DST-Storeroom" class="headerlink" title="[DST] Storeroom"></a>[DST] Storeroom</h4><p>更改以下配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Food Spoliage: Little Slower</span><br><span class="line"></span><br><span class="line">Language: Chinese</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A5%A5%E8%8D%92/" rel="tag"># 饥荒</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/16/Linux%E9%85%8D%E7%BD%AE/" rel="prev" title="Linux配置">
+                  <i class="fa fa-chevron-left"></i> Linux配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">花祭</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
